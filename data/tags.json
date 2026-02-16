@@ -1,0 +1,126 @@
+[
+  {
+    "category": "neet-exams",
+    "tag": "NEET",
+    "title": "Complete NEET Preparation Strategy for 2026",
+    "slug": "complete-neet-preparation-strategy-2026",
+    "image": "/courosol/Neet.png",
+    "content": [
+      { "type": "heading", "text": "Why NEET needs a smart strategy?" },
+      {
+        "type": "text",
+        "text": "NEET is not just about hard work but about smart preparation. With lakhs of students appearing every year, a structured study plan becomes essential. Students must focus on conceptual clarity in Biology, accuracy in Chemistry, and problem-solving speed in Physics."
+      },
+      { "type": "heading", "text": "Best Study Approach" },
+      {
+        "type": "text",
+        "text": "Start with NCERT for Biology as it forms the base of NEET. For Chemistry, focus on conceptual understanding in Physical Chemistry and reaction mechanisms in Organic Chemistry. Physics should be practiced daily to improve speed and accuracy."
+      },
+      { "type": "image", "src": "/courosol/Neet.png", "alt": "NEET Strategy" },
+      { "type": "heading", "text": "Daily Study Routine" },
+      {
+        "type": "text",
+        "text": "Allocate at least 6-8 hours daily including revision and mock tests. Consistency matters more than long study hours occasionally."
+      },
+      {
+        "type": "qa",
+        "question": "Is NCERT enough for NEET?",
+        "answer": "NCERT is the backbone for NEET, especially for Biology. However, solving additional MCQs is necessary for mastering application-based questions."
+      }
+    ]
+  },
+
+  {
+    "category": "jee-exams",
+    "tag": "JEE",
+    "title": "Ultimate JEE Success Roadmap",
+    "slug": "ultimate-jee-success-roadmap",
+    "image": "/courosol/Neet.png",
+    "content": [
+      { "type": "heading", "text": "Understanding JEE Competition" },
+      {
+        "type": "text",
+        "text": "JEE is one of the toughest engineering entrance exams in India. Success requires strong conceptual clarity and consistent problem-solving practice across Physics, Chemistry, and Mathematics."
+      },
+      { "type": "heading", "text": "Focus Areas" },
+      {
+        "type": "text",
+        "text": "Mathematics demands practice and logical thinking. Physics needs conceptual depth while Chemistry requires memorization combined with understanding."
+      },
+      { "type": "image", "src": "/courosol/Neet.png", "alt": "JEE Prep" },
+      { "type": "heading", "text": "Mock Tests Importance" },
+      {
+        "type": "text",
+        "text": "Mock tests help students understand exam patterns and improve time management."
+      },
+      {
+        "type": "qa",
+        "question": "How many hours should a JEE aspirant study?",
+        "answer": "Ideally 6-8 focused hours daily with regular revision and weekly mock tests."
+      }
+    ]
+  },
+
+  {
+    "category": "neet-dropper",
+    "tag": "NEET Dropper",
+    "title": "NEET Dropper Strategy for Guaranteed Improvement",
+    "slug": "neet-dropper-strategy",
+    "image": "/courosol/Neet.png",
+    "content": [
+      { "type": "heading", "text": "Drop Year Mindset" },
+      { "type": "image", "src": "/courosol/Neet.png", "alt": "Dropper Plan" },
+      {
+        "type": "text",
+        "text": "A drop year is an opportunity, not a setback. Students should focus on correcting previous mistakes and strengthening weak subjects."
+      },
+      { "type": "heading", "text": "Target Weak Areas" },
+      {
+        "type": "text",
+        "text": "Analyze previous year's performance and identify weak topics."
+      },
+
+      { "type": "heading", "text": "Revision Strategy" },
+      {
+        "type": "text",
+        "text": "Multiple revisions combined with regular mock tests ensure steady improvement."
+      },
+      {
+        "type": "qa",
+        "question": "Can droppers crack NEET?",
+        "answer": "Yes, many toppers are droppers because they use the year wisely."
+      }
+    ]
+  },
+
+  {
+    "category": "cbse-class-10-question-bank",
+    "tag": "Class 8 Foundation",
+    "title": "Foundation Preparation for Class 8 Students",
+    "slug": "foundation-preparation-class-8",
+    "image": "/courosol/Neet.png",
+    "content": [
+      { "type": "heading", "text": "Why Start Early?" },
+      {
+        "type": "text",
+        "text": "Early preparation helps build strong conceptual clarity in Mathematics and Science."
+      },
+      { "type": "heading", "text": "Focus Subjects" },
+      {
+        "type": "text",
+        "text": "Students should focus on logical reasoning, problem-solving, and science fundamentals."
+      },
+      { "type": "image", "src": "/courosol/Neet.png", "alt": "Foundation" },
+      { "type": "heading", "text": "Benefits of Early Prep" },
+      {
+        "type": "text",
+        "text": "Starting early reduces pressure in higher classes."
+      },
+      {
+        "type": "qa",
+        "question": "Is Class 8 too early to start?",
+        "answer": "No, it helps create strong fundamentals for future competitive exams."
+      }
+    ]
+  }
+]

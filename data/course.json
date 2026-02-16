@@ -1,0 +1,110 @@
+[
+  {
+    "type": "NEET",
+    "Heading": "NEET Enthusiast Online Course: Target 2027",
+    "content": "",
+    "class": "12",
+    "Duration": "1year",
+    "Language": "Hinglish",
+    "Batches": "Offlines Course",
+    "starting_from:": "1st Apr , 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "NEET",
+    "Heading": "NEET Major Online Test Series: Target 2026",
+    "content": "",
+    "class": "12 Plus",
+    "Duration": "1year",
+    "Language": "Hinglish",
+    "Batches": "Online Test Series",
+    "starting_from:": "18th Jan , 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "JEE",
+    "Heading": "JEE Ultimate Online Course: Target 2027",
+    "content": "",
+    "class": "11",
+    "Duration": "2 Years",
+    "Language": "Hinglish",
+    "Batches": "Live Course",
+    "starting_from:": "5th May, 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "JEE",
+    "Heading": "JEE Advanced Rank Booster: Target 2026",
+    "content": "",
+    "class": "12",
+    "Duration": "1 Year",
+    "Language": "English",
+    "Batches": "Live + Recorded",
+    "starting_from:": "12th March, 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "Classes:6-10",
+    "Heading": "Foundation Course for Class 9 (NEET + JEE)",
+    "content": "",
+    "class": "9",
+    "Duration": "1 Year",
+    "Language": "Hinglish",
+    "Batches": "Live Course",
+    "starting_from:": "10th April, 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Debargya Bag",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "Classes:6-10",
+    "Heading": "Foundation Course for Class 10 (NEET + JEE)",
+    "content": "",
+    "class": "10",
+    "Duration": "1 Year",
+    "Language": "English",
+    "Batches": "Live + Doubt Sessions",
+    "starting_from:": "20th April, 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air12",
+        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  }
+]
