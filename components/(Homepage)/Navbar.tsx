@@ -154,7 +154,7 @@ const Navbar = () => {
           {/* Footer */}
           <div className="p-6 bg-gray-50 border-t border-gray-100">
             <button className="flex items-center justify-center gap-2 w-full mb-3 text-gray-700 font-bold text-sm">
-              <Phone size={16} /> 1800-XXX-XXXX
+              <Phone size={16} /> +91 9897511632
             </button>
             <a
               href="#"

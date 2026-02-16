@@ -116,10 +116,8 @@ export default function CenterVid() {
                       Saharanpur
                     </span>
                   </div>
+
                   <p className="font-extrabold text-gray-900 group-hover:text-primary transition-colors">
-                    {locality.Location}
-                  </p>
-                  <p className="text-gray-500 text-xs font-medium">
                     {locality.Area}
                   </p>
                 </div>
