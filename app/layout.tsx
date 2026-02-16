@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/(Homepage)/Navbar";
+import WhatsappFloat from "@/components/Whatsapp";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -60,6 +61,7 @@ export default function RootLayout({
         {/* <Navbar /> */}
         <Navbar />
         {children}
+        <WhatsappFloat />
       </body>
     </html>
   );

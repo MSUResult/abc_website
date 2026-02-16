@@ -105,7 +105,7 @@ const HomePage = () => {
             </div>
 
             {/* Floating Card 2: NEW (Top Right - ABC is Best) */}
-            <div className="absolute md:top-4 top-[-10px] -right-2 md:-right-10 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-3 z-20 hover:-translate-y-1 transition-transform duration-300">
+            <div className="absolute md:top-4 top-[-30px] -right-2 md:-right-10 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-3 z-20 hover:-translate-y-1 transition-transform duration-300">
               <div className="bg-orange-100 p-2 rounded-lg text-orange-600">
                 ✨
               </div>
