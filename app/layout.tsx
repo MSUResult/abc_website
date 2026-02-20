@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/(Homepage)/Navbar";
 import WhatsappFloat from "@/components/Whatsapp";
+import NavbarProvider from "@/components/Provider/NavbarProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -59,7 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         {/* <Navbar /> */}
-        <Navbar />
+        <NavbarProvider />
         {children}
         <WhatsappFloat />
       </body>
