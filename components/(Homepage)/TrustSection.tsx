@@ -1,108 +1,135 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaVideo, FaBook, FaUserGraduate, FaSchool } from "react-icons/fa";
+import {
+  Stethoscope,
+  Atom,
+  Cpu,
+  GraduationCap,
+  ArrowUpRight,
+} from "lucide-react";
 
 const CardContent = [
   {
-    icon: <FaVideo />,
-    heading: "Daily Live",
-    para: "Interactive Classes",
-    // FIXED: Changed from hardcoded red-500 to our theme primary
-    color: "text-primary",
+    icon: <Stethoscope size={32} />,
+    heading: "NEET Prep",
+    para: "Specialized coaching for medical aspirants with top-tier faculty.",
+    color: "text-red-600",
+    shadow: "hover:shadow-red-500/20",
+    border: "group-hover:border-red-200",
+    bg: "bg-red-50",
   },
   {
-    icon: <FaBook />,
-    heading: "10 Million +",
-    para: "Tests & Notes",
-    // FIXED: Changed from blue to primary
-    color: "text-primary",
+    icon: <Cpu size={32} />,
+    heading: "JEE Main",
+    para: "Master the fundamentals of engineering with interactive modules.",
+    color: "text-blue-600",
+    shadow: "hover:shadow-blue-500/20",
+    border: "group-hover:border-blue-200",
+    bg: "bg-blue-50",
   },
   {
-    icon: <FaUserGraduate />,
-    heading: "24 x 7",
-    para: "Doubt Solving",
-    // FIXED: Changed from orange to primary
-    color: "text-primary",
+    icon: <Atom size={32} />,
+    heading: "JEE Advanced",
+    para: "Elite problem-solving techniques for the toughest IIT entrance.",
+    color: "text-purple-600",
+    shadow: "hover:shadow-purple-500/20",
+    border: "group-hover:border-purple-200",
+    bg: "bg-purple-50",
   },
   {
-    icon: <FaSchool />,
-    heading: "100 +",
-    para: "Offline Centres",
-    // FIXED: Changed from green to primary
-    color: "text-primary",
+    icon: <GraduationCap size={32} />,
+    heading: "Foundation",
+    para: "Building logical thinking and strong basics for junior classes.",
+    color: "text-emerald-600",
+    shadow: "hover:shadow-emerald-500/20",
+    border: "group-hover:border-emerald-200",
+    bg: "bg-emerald-50",
   },
 ];
 
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const TrustSection = () => {
   return (
-    // bg-gray-50 is perfect - it makes the white cards "pop"
-    <section className="bg-gray-50 py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
+    <section className="bg-[#f8fafc] py-24 relative overflow-hidden">
+      {/* Decorative Background Element */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            // Text-gray-900 is the correct "Professional Black"
-            className="text-3xl font-extrabold text-gray-900 mb-2"
+            className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4"
           >
-            A Platform Trusted by Students
-          </motion.p>
-          <p className="text-xl text-gray-500">
-            ABC Institute provides results that speak louder than words.
+            A Platform Trusted by{" "}
+            <span className="text-blue-600">Future Leaders</span>
+          </motion.h2>
+          <p className="text-lg text-slate-600">
+            Empowering students with personalized learning paths and proven
+            results.
           </p>
         </div>
 
-        {/* The Card Container */}
-        <div className="flex flex-col md:flex-row bg-white rounded-[2.5rem] shadow-xl shadow-red-100/50 overflow-hidden border border-gray-100">
+        {/* Card Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {CardContent.map((it, index) => (
             <motion.div
               key={index}
-              className="relative flex-1 group cursor-pointer border-b md:border-b-0 md:border-r border-gray-100 last:border-0"
-              whileHover="hover"
-              initial="initial"
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
+              className={`group relative bg-white p-8 rounded-3xl border border-slate-200 transition-all duration-300 shadow-sm ${it.shadow} ${it.border}`}
             >
-              <div className="flex flex-col items-center justify-center p-12 text-center h-full relative z-10">
-                {/* ICON ANIMATION */}
-                <motion.div
-                  variants={{
-                    initial: { y: 0, scale: 1, opacity: 0.8 },
-                    hover: { y: -10, scale: 1.2, opacity: 1 },
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className={`text-5xl mb-4 ${it.color} transition-colors`}
-                >
-                  {it.icon}
-                </motion.div>
-
-                {/* TEXT ANIMATION */}
-                <motion.div
-                  variants={{
-                    initial: { y: 0 },
-                    hover: { y: -5 },
-                  }}
-                >
-                  <p className="text-2xl font-black text-gray-900 tracking-tight">
-                    {it.heading}
-                  </p>
-                  <p className="text-sm text-primary font-bold uppercase tracking-widest mt-1">
-                    {it.para}
-                  </p>
-                </motion.div>
-
-                {/* HOVER BACKGROUND GLOW */}
-                {/* Changed to a very light red glow on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-red-50 opacity-0 -z-10"
-                  variants={{
-                    initial: { opacity: 0 },
-                    hover: { opacity: 1 },
-                  }}
-                />
+              {/* Icon Container */}
+              <div
+                className={`w-14 h-14 rounded-2xl ${it.bg} ${it.color} flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+              >
+                {it.icon}
               </div>
+
+              {/* Text Content */}
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  {it.heading}
+                </h3>
+                <p className="text-slate-500 leading-relaxed text-sm">
+                  {it.para}
+                </p>
+              </div>
+
+              {/* Action Button (Visible on Hover) */}
+              <div className="mt-6 flex items-center text-sm font-semibold text-slate-400 group-hover:text-slate-900 transition-colors">
+                <span>Learn more</span>
+                <ArrowUpRight size={16} className="ml-1 translate-y-0.5" />
+              </div>
+
+              {/* Subtle Gradient Glow */}
+              <div
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl bg-gradient-to-br from-transparent to-white pointer-events-none -z-10`}
+              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

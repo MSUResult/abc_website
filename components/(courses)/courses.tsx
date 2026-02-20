@@ -21,22 +21,24 @@ export default function Courses() {
         {/* FILTER TABS */}
         <section className="flex justify-center mb-12">
           <div className="inline-flex gap-3">
-            {["JEE", "NEET", "Classes 6-10"].map((type) => (
-              <button
-                key={type}
-                onClick={() =>
-                  setChoose(type === "Classes 6-10" ? "Classes:6-10" : type)
-                }
-                className={`px-8 py-2.5 rounded-full text-sm font-medium transition-all border ${
-                  choose === type ||
-                  (type === "Classes 6-10" && choose === "Classes:6-10")
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white text-gray-700 border-gray-300 hover:border-blue-600"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
+            {["JEE", "NEET", "Classes 6-10", "NEET CRASH COURSE"].map(
+              (type) => (
+                <button
+                  key={type}
+                  onClick={() =>
+                    setChoose(type === "Classes 6-10" ? "Classes:6-10" : type)
+                  }
+                  className={`px-8 py-2.5 rounded-full text-sm font-medium transition-all border ${
+                    choose === type ||
+                    (type === "Classes 6-10" && choose === "Classes:6-10")
+                      ? "bg-blue-600 text-white border-blue-600"
+                      : "bg-white text-gray-700 border-gray-300 hover:border-blue-600"
+                  }`}
+                >
+                  {type}
+                </button>
+              ),
+            )}
           </div>
         </section>
 
@@ -131,7 +133,7 @@ export default function Courses() {
                             {item.Rank}
                           </span>
                         </div>
-                        <p className="text-xs text-gray-600">{item.ifo}</p>
+                        <p className="text-xs text-gray-600">{item.info}</p>
                       </div>
                     </div>
                   ))}

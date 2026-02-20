@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
+import ContactComing from "./ContactComing";
 
 const slides = [
   {
@@ -42,6 +43,8 @@ const slides = [
 const Carousel = () => {
   const [current, setCurrent] = useState(0);
 
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -50,7 +53,20 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="w-full mt-[84px] px-4 md:px-8 py-6 flex justify-center">
+    <div className=" relative w-full mt-[84px] px-4 md:px-8 py-6 flex justify-center">
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-3 ">
+          {/* Background Blur */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
+
+          {/* Modal */}
+          <ContactComing close={() => setOpen(false)} />
+        </div>
+      )}
+
       {/* FIX 1: Adjusted Heights. 
         h-[650px] for mobile (gives room for text + image stacking)
         md:h-[450px] for laptop (shorter because they sit side-by-side)
@@ -90,7 +106,10 @@ const Carousel = () => {
                   {slide.subtitle}
                 </p>
 
-                <button className="mt-4 bg-white text-red-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 hover:scale-105 transition-all flex items-center gap-2 shadow-lg">
+                <button
+                  className="mt-4 bg-white text-red-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 hover:scale-105 transition-all flex items-center gap-2 shadow-lg"
+                  onClick={() => setOpen(!open)}
+                >
                   {slide.cta}
                   <ChevronRight size={20} />
                 </button>

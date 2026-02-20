@@ -7,13 +7,13 @@
     "Duration": "1year",
     "Language": "Hinglish",
     "Batches": "Offlines Course",
-    "starting_from:": "1st Apr , 2026",
+    "starting_from": "1st Apr , 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   },
@@ -25,13 +25,13 @@
     "Duration": "1year",
     "Language": "Hinglish",
     "Batches": "Online Test Series",
-    "starting_from:": "18th Jan , 2026",
+    "starting_from": "18th Jan , 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   },
@@ -43,13 +43,13 @@
     "Duration": "2 Years",
     "Language": "Hinglish",
     "Batches": "Live Course",
-    "starting_from:": "5th May, 2026",
+    "starting_from": "5th May, 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   },
@@ -61,13 +61,13 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Live + Recorded",
-    "starting_from:": "12th March, 2026",
+    "starting_from": "12th March, 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   },
@@ -79,13 +79,13 @@
     "Duration": "1 Year",
     "Language": "Hinglish",
     "Batches": "Live Course",
-    "starting_from:": "10th April, 2026",
+    "starting_from": "10th April, 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Debargya Bag",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   },
@@ -97,13 +97,31 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Live + Doubt Sessions",
-    "starting_from:": "20th April, 2026",
+    "starting_from": "20th April, 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
         "Rank": "Air12",
-        "ifo": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+      }
+    ]
+  },
+  {
+    "type": "NEET CRASH COURSE",
+    "Heading": "NEET Enthusiast Online Course: Target 2027",
+    "content": "",
+    "class": "12",
+    "Duration": "2 Months",
+    "Language": "Hinglish",
+    "Batches": "Offlines Course",
+    "starting_from": "1st Apr , 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Aanvi Thakur",
+        "Rank": "Air8",
+        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
       }
     ]
   }

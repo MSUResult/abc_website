@@ -13,15 +13,21 @@ import {
   MoreHorizontal,
   Phone,
 } from "lucide-react"; // Note: Ensure lucide-react is installed
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const Items = [
     { name: "Classroom Courses", href: "#", icon: <GraduationCap size={20} /> },
     { name: "Online Courses", href: "#", icon: <LayoutDashboard size={20} /> },
     { name: "Test Series", href: "#", icon: <BookOpen size={20} /> },
-    { name: "Results", href: "#", icon: <ClipboardList size={20} /> },
+    {
+      name: "Results",
+      href: "/result-2025",
+      icon: <ClipboardList size={20} />,
+    },
     { name: "About Us", href: "/about-us", icon: <Info size={20} /> },
     { name: "Blog", href: "/blog", icon: <MoreHorizontal size={20} /> },
   ];
@@ -34,7 +40,10 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-20">
             {/* --- Logo Section (Made bigger and clearer) --- */}
             <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14 overflow-hidden rounded-xl">
+              <div
+                className="relative w-12 h-12 sm:w-14 sm:h-14 overflow-hidden rounded-xl"
+                onClick={() => router.push("/")}
+              >
                 <Image
                   src="/logo.jpeg"
                   alt="ABC Institute Logo"
@@ -47,7 +56,7 @@ const Navbar = () => {
             </div>
 
             {/* --- Desktop Menu --- */}
-            <ul className="hidden xl:flex items-center gap-6">
+            <ul className="hidden lg:flex items-center gap-6 text-nowrap">
               {Items.map((item, index) => (
                 <li key={index}>
                   <a

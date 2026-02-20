@@ -2,32 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
+
 import { FaVideo } from "react-icons/fa";
 import TrustSection from "./TrustSection";
 import Link from "next/link";
 
-const CardContent = [
-  {
-    image: <FaVideo />,
-    heading: "Daily Live",
-    para: "Interactive Classes",
-  },
-  {
-    image: <FaVideo />,
-    heading: "5 Lakhs +",
-    para: "Tests, sample papers & notes",
-  },
-  {
-    image: <FaVideo />,
-    heading: "24 x 7",
-    para: "Doubt solving sessions",
-  },
-  {
-    image: <FaVideo />,
-    heading: "4 +",
-    para: "Offline centres",
-  },
-];
+
 
 const HomePage = () => {
   const [hover, setHover] = useState(false);
