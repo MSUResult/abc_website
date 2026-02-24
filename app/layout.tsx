@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     default: "ABC Institute ",
     template: "%s | ABC Institute Saharanpur",
   },
+  verification: {
+    google: "5VbBJUGy_j0l3gOE0Wbf3uLeSThPrUm0rry1oDhSKV8",
+  },
   description:
     "The most trusted and affordable educational platform for students in Saharanpur. Join online classes, get study materials, and excel in your exams.",
   keywords: [
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Saharanpur Education",
     images: [
       {
-        url: "/og-image.jgp",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Learning in Saharanpur",
