@@ -1,81 +1,45 @@
 [
   {
     "type": "NEET",
-    "Heading": "NEET Enthusiast Online Course: Target 2027",
-    "content": "",
-    "class": "12",
-    "Duration": "1year",
-    "Language": "Hinglish",
-    "Batches": "Offlines Course",
-    "starting_from": "1st Apr , 2026",
-    "why": [
-      {
-        "img": "/sirji.png",
-        "name": "Aanvi Thakur",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
-      }
-    ]
-  },
-  {
-    "type": "NEET",
-    "Heading": "NEET Major Online Test Series: Target 2026",
-    "content": "",
-    "class": "12 Plus",
-    "Duration": "1year",
-    "Language": "Hinglish",
-    "Batches": "Online Test Series",
-    "starting_from": "18th Jan , 2026",
-    "why": [
-      {
-        "img": "/sirji.png",
-        "name": "Aanvi Thakur",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
-      }
-    ]
-  },
-  {
-    "type": "JEE",
-    "Heading": "JEE Ultimate Online Course: Target 2027",
-    "content": "",
-    "class": "11",
-    "Duration": "2 Years",
-    "Language": "Hinglish",
-    "Batches": "Live Course",
-    "starting_from": "5th May, 2026",
-    "why": [
-      {
-        "img": "/sirji.png",
-        "name": "Aanvi Thakur",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
-      }
-    ]
-  },
-  {
-    "type": "JEE",
-    "Heading": "JEE Advanced Rank Booster: Target 2026",
-    "content": "",
-    "class": "12",
+    "Heading": "NEET Elite Mastery: Target 2027",
+    "content": "A comprehensive, high-intensity offline program designed by India's top medical educators to secure your seat in premier medical colleges.",
+    "class": "Dropper",
     "Duration": "1 Year",
-    "Language": "English",
-    "Batches": "Live + Recorded",
-    "starting_from": "12th March, 2026",
+    "Language": "Hindi + English",
+    "Batches": "Offline Course",
+    "starting_from": "15th March, 2026",
     "why": [
       {
         "img": "/sirji.png",
         "name": "Aanvi Thakur",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "Rank": "AIR 12",
+        "info": "Enrolled in this course | NEET-UG 2025 | AIIMS, Delhi"
       }
     ]
   },
   {
-    "type": "Classes:6-10",
-    "Heading": "Foundation Course for Class 9 (NEET + JEE)",
-    "content": "",
-    "class": "9",
+    "type": "JEE",
+    "Heading": "JEE Apex Ultimate: Target 2027",
+    "content": "Master the core concepts of Physics, Chemistry, and Mathematics with our interactive live sessions and cutting-edge study material.",
+    "class": "Dropper",
+    "Duration": "1 Year",
+    "Language": "Hindi + English",
+    "Batches": "Live Interactive Course",
+    "starting_from": "15th March, 2026",
+    "why": [
+      {
+        "img": "/sirji.png",
+        "name": "Arjun Kapoor",
+        "Rank": "AIR 45",
+        "info": "Enrolled in this course | JEE Advanced 2025 | IIT Bombay"
+      }
+    ]
+  },
+  {
+    "type": "Foundation",
+    "Heading": "Ignite Foundation: Class 9 (NEET + JEE)",
+    "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
+    "class": "9th Standard",
     "Duration": "1 Year",
     "Language": "Hinglish",
     "Batches": "Live Course",
@@ -84,16 +48,16 @@
       {
         "img": "/sirji.png",
         "name": "Debargya Bag",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "Rank": "State Topper",
+        "info": "Foundation Alumnus | NTSE Scholar 2025"
       }
     ]
   },
   {
-    "type": "Classes:6-10",
-    "Heading": "Foundation Course for Class 10 (NEET + JEE)",
-    "content": "",
-    "class": "10",
+    "type": "Foundation",
+    "Heading": "Zenith Foundation: Class 10 (NEET + JEE)",
+    "content": "Bridge the gap between your school curriculum and competitive exam rigor with expert guidance and dedicated doubt-solving.",
+    "class": "10th Standard",
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Live + Doubt Sessions",
@@ -101,27 +65,27 @@
     "why": [
       {
         "img": "/sirji.png",
-        "name": "Aanvi Thakur",
-        "Rank": "Air12",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "name": "Riya Sharma",
+        "Rank": "99.8%",
+        "info": "Foundation Alumnus | CBSE Board Topper 2025"
       }
     ]
   },
   {
-    "type": "NEET CRASH COURSE",
-    "Heading": "NEET Enthusiast Online Course: Target 2027",
-    "content": "",
-    "class": "12",
+    "type": "NEET Crash Course",
+    "Heading": "NEET Final Strike: Crash Course 2026",
+    "content": "A high-octane, rapid revision program focusing strictly on high-weightage topics to maximize your NEET score in the final months.",
+    "class": "12th / Dropper",
     "Duration": "2 Months",
-    "Language": "Hinglish",
-    "Batches": "Offlines Course",
-    "starting_from": "1st Apr , 2026",
+    "Language": "Hindi + English",
+    "Batches": "Offline Course",
+    "starting_from": "2nd March, 2026",
     "why": [
       {
         "img": "/sirji.png",
-        "name": "Aanvi Thakur",
-        "Rank": "Air8",
-        "info": "Chose thise corse | NEET-UG 2025 || AIIMS, Delhi"
+        "name": "Vikram Singh",
+        "Rank": "AIR 8",
+        "info": "Crash Course Alumnus | NEET-UG 2025 | MAMC, Delhi"
       }
     ]
   }

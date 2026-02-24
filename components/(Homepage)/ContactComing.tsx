@@ -1,9 +1,25 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { sendCallbackMail } from "@/lib/actions/sendCallbackMail";
 
 const ContactComing = ({ close }) => {
+  const [input, setInput] = useState("");
+
+  const handleSend = async () => {
+    if (!input) return alert("Enter mobile number");
+
+    const res = await sendCallbackMail(input);
+
+    if (res.success) {
+      alert("We Will Call You Shortly ✅");
+      setInput("");
+    } else {
+      alert("Something went wrong ❌");
+    }
+  };
+
   return (
     <motion.main
       initial={{ y: 80, opacity: 0 }}
@@ -54,6 +70,8 @@ const ContactComing = ({ close }) => {
                 type="tel"
                 placeholder="00000-00000"
                 className="flex-1 py-4 px-4 outline-none bg-transparent text-gray-800 font-medium placeholder:text-gray-400"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
               />
             </div>
 
@@ -69,7 +87,10 @@ const ContactComing = ({ close }) => {
             </div>
           </div>
 
-          <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-200 transition-all duration-300 active:scale-[0.98]">
+          <button
+            onClick={handleSend}
+            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-200 transition-all duration-300 active:scale-[0.98]"
+          >
             Request Callback
           </button>
         </div>

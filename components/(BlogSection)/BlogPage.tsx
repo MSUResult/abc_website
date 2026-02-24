@@ -15,6 +15,8 @@ const BlogPage = ({ data }) => {
   return (
     <main className="min-h-screen bg-[#FDFDFD] antialiased">
       {/* HERO SECTION */}
+      <h1 className="sr-only">{data.title}</h1>
+      <p className="sr-only">{data.excerpt}</p>
       <header className="relative w-full bg-primary overflow-hidden py-32 px-6">
         {/* Subtle Background Accent */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
@@ -33,10 +35,10 @@ const BlogPage = ({ data }) => {
           <div className="flex items-center justify-center gap-4 text-gray-400 text-sm">
             <span className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-red-500 to-orange-400" />
-              By Editorial Team
+              {data.author.name}
             </span>
             <span className="w-1 h-1 bg-gray-600 rounded-full" />
-            <span>5 min read</span>
+            <span>{data.readTime}</span>
           </div>
         </div>
       </header>
@@ -58,6 +60,21 @@ const BlogPage = ({ data }) => {
                   );
                 }
 
+                if (item.type === "list") {
+                  return (
+                    <ul
+                      key={index}
+                      className="space-y-3 my-6 list-disc pl-6 text-gray-700"
+                    >
+                      {item.items.map((li, i) => (
+                        <li key={i} className="leading-relaxed">
+                          {li}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }
+
                 if (item.type === "text") {
                   return (
                     <p
@@ -66,6 +83,20 @@ const BlogPage = ({ data }) => {
                     >
                       {item.text}
                     </p>
+                  );
+                }
+                if (item.type === "pdf") {
+                  return (
+                    <div key={index} className="my-8">
+                      <a
+                        href={item.url} // Fixed: used item.url instead of block.url
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-red-200"
+                      >
+                        📄 {item.title || "Download Resource"}
+                      </a>
+                    </div>
                   );
                 }
 
@@ -112,14 +143,16 @@ const BlogPage = ({ data }) => {
             {/* FOOTER OF ARTICLE */}
             <div className="mt-16 pt-10 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
               <div className="flex gap-2">
-                {["#Design", "#React", "#Web"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-sm font-medium text-gray-400 hover:text-red-500 cursor-pointer"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {["#Class12Board", "#AccountancyPaper", "#24JanurayPaper"].map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="text-sm font-medium text-gray-400 hover:text-red-500 cursor-pointer"
+                    >
+                      {tag}
+                    </span>
+                  ),
+                )}
               </div>
               <div className="flex items-center gap-3">
                 <a

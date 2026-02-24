@@ -12,20 +12,23 @@ const slides = [
     subtitle: "The most result-driven NEET crash course in Saharanpur.",
     description: "Join the most trusted batch with India's top educators.",
     cta: "Join Now",
-    src: "/courosol/Neet.png",
+    src: "/courosol/abcinst.jpeg",
     bgColor: "bg-gradient-to-r from-red-600 to-red-800", // Standardized to Tailwind colors
     accentColor: "text-white",
+    price: "15000",
   },
   {
     id: 2,
     title: "Test Series Launching",
     highlight: "NEET BATCHES",
-    subtitle: "Smart practice designed to maximize your NEET performance.",
+    subtitle:
+      "Smart practice designed to maximize your NEET and JEE performance.",
     description: "Unlock your potential with affordable learning solutions.",
     cta: "Explore Batches",
     src: "/courosol/test.png",
     bgColor: "bg-red-600",
     accentColor: "text-red-100",
+    price: "3000",
   },
   // {
   //   id: 3,
@@ -115,6 +118,25 @@ const Carousel = () => {
                 </button>
               </div>
 
+              {/* PRICE RELATIVE */}
+              <div className="absolute z-20 top-2  right-6 md:top-10 md:right-10 rotate-[-4deg]">
+                <div className="px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl">
+                  <p className="text-white text-xs font-semibold uppercase tracking-wide opacity-80">
+                    Special Price
+                  </p>
+
+                  <div className="flex items-end gap-2">
+                    <p className="text-white font-extrabold text-xl md:text-2xl leading-none">
+                      ₹{slide.price}
+                    </p>
+
+                    <span className="text-white/60 text-sm font-semibold line-through">
+                      ₹{parseInt(slide.price) + 5000}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               {/* RIGHT SIDE: IMAGE */}
               {/* FIX 4: Image takes up remaining space and scales dynamically instead of fixed hardcoded pixels */}
               {/* RIGHT SIDE: IMAGE */}
@@ -144,11 +166,22 @@ const Carousel = () => {
     translate-y-2 md:translate-y-0 
   "
                 >
+                  {/* Background Fill Layer */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={slide.src}
+                      alt="blur-bg"
+                      fill
+                      className="object-cover scale-110 blur-sm opacity-40"
+                    />
+                  </div>
+
+                  {/* Main Image */}
                   <Image
                     src={slide.src}
                     alt={slide.title}
                     fill
-                    className="object-cover"
+                    className="object-contain z-10"
                     priority
                   />
                 </div>

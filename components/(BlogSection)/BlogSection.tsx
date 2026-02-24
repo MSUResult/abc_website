@@ -31,7 +31,7 @@ const BlogSection = ({ selectedTag }) => {
           const displayTitle = blog.title || "Untitled Post";
           const displayContent = blog.content || [];
           const displayTag = blog.tag || "General";
-          const displayImage = blog.image || "/er.webp";
+          const displayImage = blog.featuredImage || "/er.webp";
           const blogSlug = blog.slug;
           const displayCategory = blog.category || "";
 

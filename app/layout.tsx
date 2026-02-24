@@ -14,7 +14,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default: "ABC Institute ",
-    template: "%s | ABC Institute Saharanpur Number #1 Coaching Institute",
+    template: "%s | ABC Institute Saharanpur",
   },
   description:
     "The most trusted and affordable educational platform for students in Saharanpur. Join online classes, get study materials, and excel in your exams.",

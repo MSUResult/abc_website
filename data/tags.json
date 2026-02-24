@@ -1,125 +1,77 @@
 [
   {
-    "category": "neet-exams",
-    "tag": "NEET",
-    "title": "Complete NEET Preparation Strategy for 2026",
-    "slug": "complete-neet-preparation-strategy-2026",
-    "image": "/courosol/Neet.png",
+    "category": "board-exams",
+    "tag": "Accountancy",
+    "title": "Class 12 Accountancy Board Paper 2026: Question Paper & Detailed Solutions",
+    "excerpt": "Cracked the Accountancy exam? Download the official Class 12 Accountancy question paper and the expert-verified answer key for February 2026.",
+    "slug": "class-12-accountancy-paper-solution-2026",
+    "featuredImage": "/carousel/abcinst.jpeg",
+    "readTime": "4 min read",
+    "author": {
+      "name": "Academic Team",
+      "role": "Commerce Expert",
+      "image": "/authors/team.jpg"
+    },
+    "publishedAt": "2026-02-24",
+    "featured": true,
+    "seo": {
+      "metaTitle": "Class 12 Accountancy Question Paper & Answer Key 2026",
+      "metaDescription": "Get the full Class 12 Accountancy 2026 question paper PDF and step-by-step answers. Perfect for checking your score and future practice.",
+      "keywords": [
+        "Class 12 Accountancy Paper 2026",
+        "Accountancy Answer Key 2026",
+        "CBSE Accountancy Solved Paper",
+        "Commerce Board Exam Solutions",
+        "Accountancy Marking Scheme 2026"
+      ]
+    },
+    "hashtags": [
+      "#CommerceStudents",
+      "#Accountancy2026",
+      "#BoardExamSolutions",
+      "#Class12Commerce",
+      "#ExamAnalysis"
+    ],
+    "targetAudience": [
+      "Class 12 Commerce Students",
+      "Accountancy Teachers",
+      "CPA Aspirants"
+    ],
     "content": [
-      { "type": "heading", "text": "Why NEET needs a smart strategy?" },
       {
-        "type": "text",
-        "text": "NEET is not just about hard work but about smart preparation. With lakhs of students appearing every year, a structured study plan becomes essential. Students must focus on conceptual clarity in Biology, accuracy in Chemistry, and problem-solving speed in Physics."
+        "type": "heading",
+        "text": "Class 12 Accountancy Exam Analysis: Feb 24, 2026"
       },
-      { "type": "heading", "text": "Best Study Approach" },
       {
         "type": "text",
-        "text": "Start with NCERT for Biology as it forms the base of NEET. For Chemistry, focus on conceptual understanding in Physical Chemistry and reaction mechanisms in Organic Chemistry. Physics should be practiced daily to improve speed and accuracy."
+        "text": "The Accountancy paper this year was a mix of conceptual depth and practical application. Major focus areas included Partnership Firms, Share Capital, and Cash Flow Statements."
       },
-      { "type": "image", "src": "/courosol/Neet.png", "alt": "NEET Strategy" },
-      { "type": "heading", "text": "Daily Study Routine" },
+      {
+        "type": "heading",
+        "text": "Download Question Paper (PDF)"
+      },
+      {
+        "type": "pdf",
+        "url": "https://drive.google.com/file/d/16jg9BTHqIblM0OwwbyIq6K5ngOxtx7wJ/view?usp=drive_link",
+        "title": "Download 2026 Accountancy Question Paper"
+      },
+      {
+        "type": "heading",
+        "text": "Download Answer Key & Solutions"
+      },
       {
         "type": "text",
-        "text": "Allocate at least 6-8 hours daily including revision and mock tests. Consistency matters more than long study hours occasionally."
+        "text": "Our experts have prepared a detailed marking scheme to help you calculate your expected score."
+      },
+      {
+        "type": "pdf",
+        "url": "https://drive.google.com/file/d/1GGhNW7ldFGnaX-poaVK1_8Elomyo9AmL/view?usp=drive_link",
+        "title": "Download Accountancy Answer Key PDF"
       },
       {
         "type": "qa",
-        "question": "Is NCERT enough for NEET?",
-        "answer": "NCERT is the backbone for NEET, especially for Biology. However, solving additional MCQs is necessary for mastering application-based questions."
-      }
-    ]
-  },
-
-  {
-    "category": "jee-exams",
-    "tag": "JEE",
-    "title": "Ultimate JEE Success Roadmap",
-    "slug": "ultimate-jee-success-roadmap",
-    "image": "/courosol/Neet.png",
-    "content": [
-      { "type": "heading", "text": "Understanding JEE Competition" },
-      {
-        "type": "text",
-        "text": "JEE is one of the toughest engineering entrance exams in India. Success requires strong conceptual clarity and consistent problem-solving practice across Physics, Chemistry, and Mathematics."
-      },
-      { "type": "heading", "text": "Focus Areas" },
-      {
-        "type": "text",
-        "text": "Mathematics demands practice and logical thinking. Physics needs conceptual depth while Chemistry requires memorization combined with understanding."
-      },
-      { "type": "image", "src": "/courosol/Neet.png", "alt": "JEE Prep" },
-      { "type": "heading", "text": "Mock Tests Importance" },
-      {
-        "type": "text",
-        "text": "Mock tests help students understand exam patterns and improve time management."
-      },
-      {
-        "type": "qa",
-        "question": "How many hours should a JEE aspirant study?",
-        "answer": "Ideally 6-8 focused hours daily with regular revision and weekly mock tests."
-      }
-    ]
-  },
-
-  {
-    "category": "neet-dropper",
-    "tag": "NEET Dropper",
-    "title": "NEET Dropper Strategy for Guaranteed Improvement",
-    "slug": "neet-dropper-strategy",
-    "image": "/courosol/Neet.png",
-    "content": [
-      { "type": "heading", "text": "Drop Year Mindset" },
-      { "type": "image", "src": "/courosol/Neet.png", "alt": "Dropper Plan" },
-      {
-        "type": "text",
-        "text": "A drop year is an opportunity, not a setback. Students should focus on correcting previous mistakes and strengthening weak subjects."
-      },
-      { "type": "heading", "text": "Target Weak Areas" },
-      {
-        "type": "text",
-        "text": "Analyze previous year's performance and identify weak topics."
-      },
-
-      { "type": "heading", "text": "Revision Strategy" },
-      {
-        "type": "text",
-        "text": "Multiple revisions combined with regular mock tests ensure steady improvement."
-      },
-      {
-        "type": "qa",
-        "question": "Can droppers crack NEET?",
-        "answer": "Yes, many toppers are droppers because they use the year wisely."
-      }
-    ]
-  },
-
-  {
-    "category": "cbse-class-10-question-bank",
-    "tag": "Class 8 Foundation",
-    "title": "Foundation Preparation for Class 8 Students",
-    "slug": "foundation-preparation-class-8",
-    "image": "/courosol/Neet.png",
-    "content": [
-      { "type": "heading", "text": "Why Start Early?" },
-      {
-        "type": "text",
-        "text": "Early preparation helps build strong conceptual clarity in Mathematics and Science."
-      },
-      { "type": "heading", "text": "Focus Subjects" },
-      {
-        "type": "text",
-        "text": "Students should focus on logical reasoning, problem-solving, and science fundamentals."
-      },
-      { "type": "image", "src": "/courosol/Neet.png", "alt": "Foundation" },
-      { "type": "heading", "text": "Benefits of Early Prep" },
-      {
-        "type": "text",
-        "text": "Starting early reduces pressure in higher classes."
-      },
-      {
-        "type": "qa",
-        "question": "Is Class 8 too early to start?",
-        "answer": "No, it helps create strong fundamentals for future competitive exams."
+        "question": "Was the 2026 Accountancy paper difficult?",
+        "answer": "Most students found the Partnership section moderate, while the Analysis of Financial Statements was quite scoring."
       }
     ]
   }

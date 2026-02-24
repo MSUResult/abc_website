@@ -2,6 +2,28 @@ import React from "react";
 import data from "@/data/tags.json";
 import BlogPage from "@/components/(BlogSection)/BlogPage";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const blogSlug = Array.isArray(slug) ? slug[slug.length - 1] : slug;
+  const blog = data.find((item) => item.slug === blogSlug);
+
+  if (!blog) return { title: "Post Not Found" };
+
+  return {
+    title: blog.seo?.metaTitle || blog.title,
+    description: blog.seo?.metaDescription || blog.excerpt,
+    keywords: blog.seo?.keywords,
+    openGraph: {
+      title: blog.seo?.metaTitle,
+      description: blog.seo?.metaDescription,
+      images: [blog.featuredImage],
+      type: "article",
+      publishedTime: blog.publishedAt,
+      authors: [blog.author?.name],
+    },
+  };
+}
+
 const page = async ({ params }) => {
   // 1. Next.js 15+ requires awaiting params
   const { slug } = await params;
@@ -32,10 +54,32 @@ const page = async ({ params }) => {
     );
   }
 
+  // Define JSON-LD inside the component
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blog.title,
+    description: blog.seo?.metaDescription,
+    image: blog.featuredImage,
+    author: {
+      "@type": "Person",
+      name: blog.author?.name,
+    },
+    datePublished: blog.publishedAt,
+  };
+
   // 5. RETURN ONLY THE COMPONENT
   // Do not wrap this in a <main> or <div>.
   // Let BlogPage handle the full-screen layout.
-  return <BlogPage data={blog} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogPage data={blog} />
+    </>
+  );
 };
 
 export default page;
