@@ -15,7 +15,7 @@ const slides = [
     src: "/courosol/abcinst.jpeg",
     bgColor: "bg-gradient-to-r from-red-600 to-red-800", // Standardized to Tailwind colors
     accentColor: "text-white",
-    price: "15000",
+    price: "8000",
   },
   {
     id: 2,
