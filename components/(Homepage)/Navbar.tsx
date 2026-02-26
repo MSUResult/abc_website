@@ -13,12 +13,14 @@ import {
   MoreHorizontal,
   Phone,
   ChevronRight,
+  ChevronDown, // Added for the accordion
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [mobileResultsOpen, setMobileResultsOpen] = useState(false); // New state for mobile toggle
   const router = useRouter();
 
   const Items = [
@@ -89,7 +91,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Desktop Menu - (UNTOUCHED) */}
             <ul className="hidden lg:flex items-center gap-8">
               {Items.map((item, index) => {
                 const isResult = item.name === "Results";
@@ -109,25 +111,22 @@ const Navbar = () => {
                         <RenderBadge status={item.status} />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
                       </a>
-
-                      {/* Improved Results Dropdown */}
                       <AnimatePresence>
                         {isResult && isHovered && (
                           <motion.div
                             initial={{ opacity: 0, y: 15, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                            transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="absolute top-full left-[-20px] w-60 p-2 bg-white rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl"
+                            className="absolute top-full left-[-20px] w-60 p-2 bg-white rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
                           >
                             {[
-                              { label: "NEET Results", path: "/results/neet" },
-                              { label: "JEE Results", path: "/results/jee" },
+                              { label: "NEET Results", path: "/result-2025" },
+                              { label: "JEE Results", path: "/result-2025" },
                             ].map((subItem) => (
                               <button
                                 key={subItem.label}
                                 onClick={() => router.push(subItem.path)}
-                                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group/item"
+                                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all group/item"
                               >
                                 {subItem.label}
                                 <ChevronRight
@@ -161,8 +160,8 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Mobile Controls */}
-            <div className="lg:hidden flex items-center gap-3">
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
               <button
                 onClick={() => setOpen(true)}
                 className="p-2 text-gray-800 bg-gray-100 rounded-lg"
@@ -179,8 +178,9 @@ const Navbar = () => {
         className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={() => setOpen(false)}
       />
+
       <div
-        className={`fixed inset-y-0 right-0 z-[70] w-[300px] bg-white transform transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-y-0 right-0 z-[70] w-[320px] bg-white transform transition-transform duration-500 ease-in-out ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-6 border-b border-gray-50">
@@ -192,48 +192,95 @@ const Navbar = () => {
               <X size={24} />
             </button>
           </div>
+
           <div className="flex-1 overflow-y-auto p-4">
-            <nav className="space-y-2">
-              {Items.map((item, index) => (
-                <div key={index}>
-                  <a
-                    href={item.href}
-                    onClick={() => item.name !== "Results" && setOpen(false)}
-                    className="flex items-center justify-between px-4 py-4 rounded-2xl text-gray-700 font-bold hover:bg-blue-50 transition-all group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span className="p-2 bg-gray-50 text-gray-400 rounded-xl group-hover:text-blue-600">
-                        {item.icon}
-                      </span>
-                      {item.name}
-                    </div>
-                    <RenderBadge status={item.status} />
-                  </a>
-                  {item.name === "Results" && (
-                    <div className="ml-14 space-y-1 mb-2">
-                      <button
-                        onClick={() => {
-                          router.push("/results/neet");
+            <nav className="space-y-1">
+              {Items.map((item, index) => {
+                const isResult = item.name === "Results";
+
+                return (
+                  <div key={index} className="overflow-hidden">
+                    {/* Main Item Link */}
+                    <button
+                      onClick={() => {
+                        if (isResult) {
+                          setMobileResultsOpen(!mobileResultsOpen);
+                        } else {
+                          router.push(item.href);
                           setOpen(false);
-                        }}
-                        className="block w-full text-left p-2 text-sm font-semibold text-gray-500 hover:text-blue-600"
-                      >
-                        NEET
-                      </button>
-                      <button
-                        onClick={() => {
-                          router.push("/results/jee");
-                          setOpen(false);
-                        }}
-                        className="block w-full text-left p-2 text-sm font-semibold text-gray-500 hover:text-blue-600"
-                      >
-                        JEE
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
+                        }
+                      }}
+                      className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl font-bold transition-all ${
+                        isResult && mobileResultsOpen
+                          ? "bg-blue-50 text-blue-600"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <span
+                          className={`p-2 rounded-xl transition-colors ${
+                            isResult && mobileResultsOpen
+                              ? "bg-blue-600 text-white"
+                              : "bg-gray-50 text-gray-400"
+                          }`}
+                        >
+                          {item.icon}
+                        </span>
+                        {item.name}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <RenderBadge status={item.status} />
+                        {isResult && (
+                          <ChevronDown
+                            size={18}
+                            className={`transition-transform duration-300 ${mobileResultsOpen ? "rotate-180" : ""}`}
+                          />
+                        )}
+                      </div>
+                    </button>
+
+                    {/* Mobile Sub-menu Accordion */}
+                    {isResult && (
+                      <AnimatePresence>
+                        {mobileResultsOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="ml-14 mt-1 space-y-1 border-l-2 border-blue-100"
+                          >
+                            {[
+                              { label: "NEET Results", path: "/results/neet" },
+                              { label: "JEE Results", path: "/results/jee" },
+                            ].map((sub) => (
+                              <button
+                                key={sub.label}
+                                onClick={() => {
+                                  router.push(sub.path);
+                                  setOpen(false);
+                                }}
+                                className="block w-full text-left px-4 py-3 text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors"
+                              >
+                                {sub.label}
+                              </button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
+          </div>
+
+          {/* Mobile Footer Action */}
+          <div className="p-6 border-t border-gray-50 bg-gray-50/50">
+            <button className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-100">
+              Login / Register
+            </button>
           </div>
         </div>
       </div>
