@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     default: "ABC Institute ",
     template: "%s | ABC Institute Saharanpur",
   },
+  icons: {
+    icon: "/logo.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon",
+  },
   verification: {
     google: "5VbBJUGy_j0l3gOE0Wbf3uLeSThPrUm0rry1oDhSKV8",
   },

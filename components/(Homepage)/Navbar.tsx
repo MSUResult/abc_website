@@ -121,7 +121,10 @@ const Navbar = () => {
                           >
                             {[
                               { label: "NEET Results", path: "/result-2025" },
-                              { label: "JEE Results", path: "/result-2025" },
+                              {
+                                label: "JEE Results",
+                                path: "/jee/results-2026",
+                              },
                             ].map((subItem) => (
                               <button
                                 key={subItem.label}
@@ -253,7 +256,10 @@ const Navbar = () => {
                           >
                             {[
                               { label: "NEET Results", path: "/results/neet" },
-                              { label: "JEE Results", path: "/results/jee" },
+                              {
+                                label: "JEE Results",
+                                path: "/jee/results-2026",
+                              },
                             ].map((sub) => (
                               <button
                                 key={sub.label}
