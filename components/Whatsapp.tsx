@@ -2,7 +2,7 @@ import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsappFloat = () => {
-  const phoneNumber = "917618550475"; // 👉 change to your number
+  const phoneNumber = "919897511632"; // 👉 change to your number
 
   const message = "Hello i want to know more about ABC Institute";
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
