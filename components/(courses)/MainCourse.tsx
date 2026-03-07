@@ -50,7 +50,7 @@ const MainCourse = () => {
                 src="/courosol/abcinst.jpeg"
                 alt="NEET Crash Course"
                 fill
-                className="object-contain hover:scale-105 transition-transform duration-500"
+                className="object-contain object-top hover:scale-105 transition-transform duration-500"
               />
             </div>
 

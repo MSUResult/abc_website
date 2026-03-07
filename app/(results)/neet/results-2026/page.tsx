@@ -15,7 +15,7 @@ const Page = () => {
           {/* Left Badge Section */}
           <div className="bg-gradient-to-br from-blue-700 via-blue-800 to-slate-900 md:w-32 flex items-center justify-center py-6 md:py-12 px-4 shadow-inner">
             <p className="font-black text-white/90 uppercase tracking-[0.2em] md:-rotate-90 whitespace-nowrap text-2xl drop-shadow-md">
-              NEET Results
+              JEE Results
             </p>
           </div>
 

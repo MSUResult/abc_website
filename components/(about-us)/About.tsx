@@ -149,9 +149,9 @@ const About = () => {
                   <Image
                     src="/courosol/abc4.avif"
                     alt="Students Learning"
-                    width={600}
-                    height={600}
-                    className="object-cover aspect-square hover:scale-105 transition-transform duration-700"
+                    width={1200}
+                    height={800}
+                    className="object-contain h-auto w-full hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 {/* Visual Accent */}

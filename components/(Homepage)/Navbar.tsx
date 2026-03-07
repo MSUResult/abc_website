@@ -120,7 +120,10 @@ const Navbar = () => {
                             className="absolute top-full left-[-20px] w-60 p-2 bg-white rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
                           >
                             {[
-                              { label: "NEET Results", path: "/result-2025" },
+                              {
+                                label: "NEET Results",
+                                path: "/neet/results-2026",
+                              },
                               {
                                 label: "JEE Results",
                                 path: "/jee/results-2026",

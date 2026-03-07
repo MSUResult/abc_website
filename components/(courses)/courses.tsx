@@ -141,7 +141,7 @@ export default function Courses() {
                         <img
                           src={item.img}
                           alt={item.name}
-                          className="w-12 h-12 rounded-full object-cover ring-2 ring-white shadow-md"
+                          className="w-12 h-12 rounded-full object-cover object-top ring-2 ring-white shadow-md"
                         />
                         <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-[8px] text-white font-bold px-1 rounded border border-white">
                           TOPPER
