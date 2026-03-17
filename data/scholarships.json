@@ -1,0 +1,44 @@
+{
+  "foundation": {
+    "title": "Class 6th to 10th (Foundation)",
+    "description": "1 Year Program for junior excellence.",
+    "tiers": [
+      { "min_marks": 97, "discount": 30 },
+      { "min_marks": 85, "discount": 25 },
+      { "min_marks": 75, "discount": 20 },
+      { "min_marks": 65, "discount": 15 }
+    ]
+  },
+  "academic_senior": {
+    "title": "Class 11th & 12th (Academic)",
+    "description": "1-2 Year Program for Board Excellence.",
+    "tiers": [
+      { "min_marks": 97, "discount": 60 },
+      { "min_marks": 95, "discount": 50 },
+      { "min_marks": 85, "discount": 30 },
+      { "min_marks": 75, "discount": 25 },
+      { "min_marks": 65, "discount": 20 }
+    ]
+  },
+  "neet_jee": {
+    "title": "NEET / IIT-JEE Target",
+    "description": "Intensive coaching for medical & engineering aspirants.",
+    "tiers": [
+      { "min_marks": 97, "discount": 60 },
+      { "min_marks": 95, "discount": 50 },
+      { "min_marks": 85, "discount": 30 },
+      { "min_marks": 75, "discount": 25 },
+      { "min_marks": 65, "discount": 20 }
+    ]
+  },
+  "academic_competition": {
+    "title": "class 11th & 12th 2 year Program",
+    "description": "Intensive coaching for medical & engineering aspirants.",
+    "tiers": [
+      { "min_marks": 97, "discount": 25 },
+      { "min_marks": 85, "discount": 20 },
+      { "min_marks": 75, "discount": 15 },
+      { "min_marks": 65, "discount": 10 }
+    ]
+  }
+}
