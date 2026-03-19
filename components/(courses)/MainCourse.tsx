@@ -180,7 +180,11 @@ const MainCourse = () => {
 
               <div className="p-6 pt-0 mt-auto">
                 <button
-                  onClick={() => setOpen(true)}
+                  onClick={(e) => {
+                    setOpen(true);
+                    e.preventDefault(); // Prevents Next.js Link navigation
+                    e.stopPropagation(); // Stops the click from bubbling up
+                  }}
                   className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-md flex justify-center items-center gap-2"
                 >
                   Enroll Now

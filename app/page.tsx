@@ -4,7 +4,6 @@ import Carousel from "@/components/(Homepage)/Courosol";
 import TrustSection from "@/components/(Homepage)/HomePage";
 import HomePage from "@/components/(Homepage)/HomePage";
 
-
 // import Slider from "@/components/slider";
 
 export const metadata = {
@@ -15,14 +14,13 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
-     
-      <Carousel />
+      {/* <Carousel /> */}
       <HomePage />
 
       <CenterVid />
 
       <Courses />
-    
+
       {/* Other sections... */}
     </main>
   );

@@ -11,7 +11,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th March, 2026",
+    "starting_from": "15th April, 2026",
     "eligibility": "Students scoring 400+ marks in previous NEET attempt",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -38,7 +38,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th March, 2026",
+    "starting_from": "15th April, 2026",
     "eligibility": "Students scoring 300 + marks in previous NEET attempt",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -65,7 +65,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th March, 2026",
+    "starting_from": "15th April, 2026",
     "eligibility": "Available for every student",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -92,7 +92,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Batches",
-    "starting_from": "15th March, 2026",
+    "starting_from": "15th April, 2026",
     "eligibility": "Students scoring 400+ marks in previous JEE attempt",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -306,12 +306,12 @@
   },
   {
     "type": "Foundation",
-    "slug": "ignite-foundation-class-9-neet-jee",
-    "Heading": "Ignite Foundation: Class 9 (NEET + JEE)",
+    "slug": "class-9-neet-jee",
+    "Heading": "Class 9 (NEET + JEE)",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "9th Standard",
     "Duration": "1 Year",
-    "Language": "Hinglish",
+    "Language": "Hindi + English",
     "Batches": "Live Course",
     "starting_from": "10th April, 2026",
     "features": [
@@ -323,14 +323,14 @@
   },
   {
     "type": "Foundation",
-    "slug": "zenith-foundation-class-10-neet-jee",
-    "Heading": "Zenith Foundation: Class 10 (NEET + JEE)",
+    "slug": "class-10-neet-jee",
+    "Heading": " Class 10 (NEET + JEE)",
     "content": "Bridge the gap between your school curriculum and competitive exam rigor with expert guidance and dedicated doubt-solving.",
     "class": "10th Standard",
-    "Duration": "1 Year",
+    "Duration": "2 Year",
     "Language": "English",
     "Batches": "Live + Doubt Sessions",
-    "starting_from": "20th April, 2026",
+    "starting_from": "5th April, 2026",
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -341,13 +341,13 @@
   {
     "type": "NEET Crash Course",
     "slug": "neet-final-strike-crash-course-2026",
-    "Heading": "NEET Final Strike: Crash Course 2026",
+    "Heading": "NEET : Crash Course 2026",
     "content": "A high-octane, rapid revision program focusing strictly on high-weightage topics to maximize your NEET score in the final months.",
     "class": "12th / Dropper",
     "Duration": "2 Months",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "2nd March, 2026",
+    "starting_from": "2nd April, 2026",
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
