@@ -24,7 +24,7 @@
         "img": "/result/Bhavya_Aggarwal.png",
         "name": "Bhavya Aggarwal",
         "Rank": "700 score",
-        "info": "Enrolled in this course | NEET-UG 2024 | AIIMS, Delhi"
+        "info": "Enrolled in this course | NEET-UG 2024 | AIIMS, GORAKHPUR "
       }
     ]
   },
@@ -166,7 +166,7 @@
   {
     "type": "6-8",
     "slug": "class-6-foundation-course",
-    "Heading": "Class 6",
+    "Heading": "Class 6 (all subjects)",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "6th Standard",
     "Duration": "1 Year",
@@ -177,7 +177,7 @@
   {
     "type": "6-8",
     "slug": "class-7-foundation-course",
-    "Heading": "Class 7",
+    "Heading": "Class 7 (all subjects)",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "7th Standard",
     "Duration": "1 Year",
@@ -188,7 +188,7 @@
   {
     "type": "6-8",
     "slug": "class-8-foundation-course",
-    "Heading": "Class 8",
+    "Heading": "Class 8 (all subjects)",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "8th Standard",
     "Duration": "1 Year",
@@ -205,7 +205,7 @@
   {
     "type": "9-10",
     "slug": "class-9-offline-regular",
-    "Heading": "Class 9",
+    "Heading": "Class 9 (MATHS | SCIENCE | ENGLISH | SOCIAL SCIENCE )",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "9th Standard",
     "Duration": "1 Year",
@@ -222,7 +222,7 @@
   {
     "type": "9-10",
     "slug": "class-10-offline-regular",
-    "Heading": "Class 10",
+    "Heading": "Class 10 (MATHS | SCIENCE | ENGLISH | SOCIAL SCIENCE )",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "9th Standard",
     "Duration": "1 Year",
@@ -256,7 +256,7 @@
   {
     "type": "11-12",
     "slug": "class-11-two-year-program",
-    "Heading": "Class 11",
+    "Heading": "Class 11 + JEE",
     "content": "Build a rock-solid foundation for future competitive exams while simultaneously excelling in your school academics.",
     "class": "11th Standard",
     "Duration": "2 Year",

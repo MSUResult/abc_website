@@ -70,7 +70,7 @@ const Footer = () => {
                   href="/courses"
                   className="hover:text-red-600 transition-colors duration-300"
                 >
-                  JEE & NEET Coaching
+                  IIT-JEE
                 </a>
               </li>
               <li>
@@ -78,7 +78,7 @@ const Footer = () => {
                   href="courses"
                   className="hover:text-red-600 transition-colors duration-300"
                 >
-                  Class 11 and 12th coaching
+                  Academics Classes-1st to 12th (all subjects)
                 </a>
               </li>
               <li>
@@ -86,7 +86,15 @@ const Footer = () => {
                   href="/courses"
                   className="hover:text-red-600 transition-colors duration-300"
                 >
-                  IELTS Coaching
+                  NEET-UG
+                </a>
+              </li>
+                <li>
+                <a
+                  href="/courses"
+                  className="hover:text-red-600 transition-colors duration-300"
+                >
+                  ILETS | PTE | SPOKEN ENGLISH
                 </a>
               </li>
             </ul>
@@ -104,10 +112,12 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter email"
+                suppressHydrationWarning={true}
                 className="w-full px-4 py-2 bg-slate-50 border border-red-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
               />
               <button
                 type="submit"
+                suppressHydrationWarning={true} // <-- Add here too just in case
                 className="bg-red-600 text-white px-4 py-2 rounded-r-md hover:bg-red-700 transition-colors duration-300 font-medium"
               >
                 Join

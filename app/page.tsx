@@ -3,6 +3,7 @@ import CenterVid from "@/components/(Homepage)/Center";
 import Carousel from "@/components/(Homepage)/Courosol";
 import TrustSection from "@/components/(Homepage)/HomePage";
 import HomePage from "@/components/(Homepage)/HomePage";
+import Matrix from "@/components/matrix";
 
 // import Slider from "@/components/slider";
 
@@ -20,8 +21,16 @@ export default function Home() {
       <CenterVid />
 
       <Courses />
+      
 
-      {/* Other sections... */}
+
+
+
+
+
+
+
+
     </main>
   );
 }
