@@ -53,19 +53,32 @@ const QuizEngine = ({ testData }) => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-  const handleSubmitTest = (forceSubmit = false) => {
+const handleSubmitTest = (forceSubmit = false) => {
     if (hasSubmittedRef.current) return;
+    
+    // 1. CHECK AUTH (Replace this with your actual Clerk/Auth logic)
+    // const { isSignedIn } = useUser(); // If using Clerk
+    const isLoggedIn = true; // MOCK: Set this to your actual auth state
+
+    if (!isLoggedIn) {
+      const wantToLogin = window.confirm("You are not logged in! Your results will NOT be saved. Do you want to go to the login page?");
+      if (wantToLogin) {
+        router.push("/login"); // Make sure this path actually exists!
+        return;
+      }
+      // If they stay, we show result page but don't save to database
+    }
+
     hasSubmittedRef.current = true;
 
+    // 2. Calculate Score
     let score = 0;
     let correctCount = 0;
     let incorrectCount = 0;
-
     const answersToProcess = forceSubmit ? latestAnswers.current : selectedAnswers;
 
     testData.questions.forEach((q, index) => {
       const userAnswer = answersToProcess[index];
-
       if (userAnswer === q.correctAnswer) {
         score += 4;
         correctCount++;
@@ -83,9 +96,13 @@ const QuizEngine = ({ testData }) => {
       totalQuestions,
       maxScore: totalQuestions * 4,
       userAnswers: answersToProcess,
+      isGuest: !isLoggedIn, // Flag to show "Guest Mode" on result page
     };
 
+    // 3. Save to SessionStorage (so result page can read it)
     sessionStorage.setItem(`testResult-${testData.id}`, JSON.stringify(resultData));
+
+    // 4. Navigate to Result
     router.replace(`/test-series/${testData.id}/result`);
   };
 
