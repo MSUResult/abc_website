@@ -9,7 +9,7 @@ export default async function ResultPage({ params }) {
   // Optimization: Use auth() here too for faster page loads
   const { userId } = await auth();
 
-  if (!userId) redirect("/sign-in");
+  if (!userId) redirect("/login");
   const { id } = await params;
 
   await connectDB();

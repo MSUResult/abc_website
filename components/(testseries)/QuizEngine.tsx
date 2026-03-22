@@ -2,11 +2,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+
+
 
 const QuizEngine = ({ testData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const router = useRouter();
+  const { isSignedIn, user } = useUser(); // Add this inside your QuizEngine component
 
   const totalQuestions = testData.questions.length;
   const totalTimeInSeconds = totalQuestions * 60;
@@ -54,57 +58,47 @@ const QuizEngine = ({ testData }) => {
   };
 
 const handleSubmitTest = (forceSubmit = false) => {
-    if (hasSubmittedRef.current) return;
+  if (hasSubmittedRef.current) return;
+
+  // 1. Logic for Non-Logged In users
+  if (!isSignedIn) {
+    const confirmGuest = window.confirm(
+      "You are not logged in. Your progress won't be saved to your profile, but you can still see your score. Continue as Guest?"
+    );
     
-    // 1. CHECK AUTH (Replace this with your actual Clerk/Auth logic)
-    // const { isSignedIn } = useUser(); // If using Clerk
-    const isLoggedIn = true; // MOCK: Set this to your actual auth state
-
-    if (!isLoggedIn) {
-      const wantToLogin = window.confirm("You are not logged in! Your results will NOT be saved. Do you want to go to the login page?");
-      if (wantToLogin) {
-        router.push("/login"); // Make sure this path actually exists!
-        return;
-      }
-      // If they stay, we show result page but don't save to database
+    if (!confirmGuest) {
+      // Optional: Redirect them to your login page if you have one
+      // router.push('/sign-in'); 
+      return; 
     }
+  }
 
-    hasSubmittedRef.current = true;
+  hasSubmittedRef.current = true;
 
-    // 2. Calculate Score
-    let score = 0;
-    let correctCount = 0;
-    let incorrectCount = 0;
-    const answersToProcess = forceSubmit ? latestAnswers.current : selectedAnswers;
+  // ... (Your existing score calculation code) ...
 
-    testData.questions.forEach((q, index) => {
-      const userAnswer = answersToProcess[index];
-      if (userAnswer === q.correctAnswer) {
-        score += 4;
-        correctCount++;
-      } else if (userAnswer !== undefined) {
-        score -= 1;
-        incorrectCount++;
-      }
-    });
-
-    const resultData = {
-      score,
-      correctCount,
-      incorrectCount,
-      unattemptedCount: totalQuestions - (correctCount + incorrectCount),
-      totalQuestions,
-      maxScore: totalQuestions * 4,
-      userAnswers: answersToProcess,
-      isGuest: !isLoggedIn, // Flag to show "Guest Mode" on result page
-    };
-
-    // 3. Save to SessionStorage (so result page can read it)
-    sessionStorage.setItem(`testResult-${testData.id}`, JSON.stringify(resultData));
-
-    // 4. Navigate to Result
-    router.replace(`/test-series/${testData.id}/result`);
+  const resultData = {
+    score,
+    correctCount,
+    incorrectCount,
+    unattemptedCount: totalQuestions - (correctCount + incorrectCount),
+    totalQuestions,
+    maxScore: totalQuestions * 4,
+    userAnswers: answersToProcess,
+    savedToDatabase: isSignedIn, // Tell the result page if this was a "Real" save or "Guest"
   };
+
+  // 2. Save to SessionStorage so the Result page can display it
+  sessionStorage.setItem(`testResult-${testData.id}`, JSON.stringify(resultData));
+
+  // 3. If logged in, you could also trigger a fetch() here to save to MongoDB
+  if (isSignedIn) {
+    console.log("Saving results to MongoDB for user:", user.id);
+    // call your API route here
+  }
+
+  router.replace(`/test-series/${testData.id}/result`);
+};
 
   // Timer Effect
   useEffect(() => {
