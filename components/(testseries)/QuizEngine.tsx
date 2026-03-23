@@ -4,20 +4,17 @@ import { ChevronLeft, ChevronRight, CheckCircle, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
-
-
 const QuizEngine = ({ testData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const router = useRouter();
-  const { isSignedIn, user } = useUser(); // Add this inside your QuizEngine component
+  const { isSignedIn, user } = useUser();
 
   const totalQuestions = testData.questions.length;
   const totalTimeInSeconds = totalQuestions * 60;
 
   const [timeLeft, setTimeLeft] = useState(totalTimeInSeconds);
 
-  // Refs for tracking state inside Event Listeners without stale data
   const latestAnswers = useRef(selectedAnswers);
   const hasSubmittedRef = useRef(false);
   const currentIndexRef = useRef(currentIndex);
@@ -57,50 +54,65 @@ const QuizEngine = ({ testData }) => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-const handleSubmitTest = (forceSubmit = false) => {
-  if (hasSubmittedRef.current) return;
+  const handleSubmitTest = (forceSubmit = false) => {
+    if (hasSubmittedRef.current) return;
 
-  // 1. Logic for Non-Logged In users
-  if (!isSignedIn) {
-    const confirmGuest = window.confirm(
-      "You are not logged in. Your progress won't be saved to your profile, but you can still see your score. Continue as Guest?"
-    );
-    
-    if (!confirmGuest) {
-      // Optional: Redirect them to your login page if you have one
-      // router.push('/sign-in'); 
-      return; 
+    if (!isSignedIn) {
+      const confirmGuest = window.confirm(
+        "You are not logged in. Your progress won't be saved to your profile, but you can still see your score. Continue as Guest?",
+      );
+
+      if (!confirmGuest) {
+        return;
+      }
     }
-  }
 
-  hasSubmittedRef.current = true;
+    hasSubmittedRef.current = true;
 
-  // ... (Your existing score calculation code) ...
+    const answersToProcess = latestAnswers.current;
 
-  const resultData = {
-    score,
-    correctCount,
-    incorrectCount,
-    unattemptedCount: totalQuestions - (correctCount + incorrectCount),
-    totalQuestions,
-    maxScore: totalQuestions * 4,
-    userAnswers: answersToProcess,
-    savedToDatabase: isSignedIn, // Tell the result page if this was a "Real" save or "Guest"
+    let correctCount = 0;
+    let incorrectCount = 0;
+
+    testData.questions.forEach((question, index) => {
+      const selectedOption = answersToProcess[index];
+
+      if (selectedOption !== undefined) {
+        if (selectedOption === question.answer) {
+          correctCount++;
+        } else {
+          incorrectCount++;
+        }
+      }
+    });
+
+    const unattemptedCount = totalQuestions - (correctCount + incorrectCount);
+    const score = correctCount * 4;
+
+    const resultData = {
+      score,
+      correctCount,
+      incorrectCount,
+      unattemptedCount,
+      totalQuestions,
+      maxScore: totalQuestions * 4,
+      userAnswers: answersToProcess,
+      savedToDatabase: isSignedIn,
+    };
+
+    sessionStorage.setItem(
+      `testResult-${testData.id}`,
+      JSON.stringify(resultData),
+    );
+
+    if (isSignedIn) {
+      console.log("Saving results to MongoDB for user:", user.id);
+      // call your API route here
+    }
+
+    router.replace(`/test-series/${testData.id}/result`);
   };
 
-  // 2. Save to SessionStorage so the Result page can display it
-  sessionStorage.setItem(`testResult-${testData.id}`, JSON.stringify(resultData));
-
-  // 3. If logged in, you could also trigger a fetch() here to save to MongoDB
-  if (isSignedIn) {
-    console.log("Saving results to MongoDB for user:", user.id);
-    // call your API route here
-  }
-
-  router.replace(`/test-series/${testData.id}/result`);
-};
-
-  // Timer Effect
   useEffect(() => {
     if (timeLeft <= 0) {
       handleSubmitTest(true);
@@ -112,7 +124,6 @@ const handleSubmitTest = (forceSubmit = false) => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  // Comprehensive Security Hub Effect
   useEffect(() => {
     window.history.pushState(null, "", window.location.href);
 
@@ -121,7 +132,9 @@ const handleSubmitTest = (forceSubmit = false) => {
       if (currentIndexRef.current > 0) {
         setCurrentIndex((prev) => prev - 1);
       } else {
-        const leave = window.confirm("Warning: Leaving now will instantly submit your quiz. Continue?");
+        const leave = window.confirm(
+          "Warning: Leaving now will instantly submit your quiz. Continue?",
+        );
         if (leave) {
           handleSubmitTest(true);
         }
@@ -130,12 +143,15 @@ const handleSubmitTest = (forceSubmit = false) => {
 
     const handleBeforeUnload = (e) => {
       e.preventDefault();
-      e.returnValue = "Are you sure you want to leave? Your test will be affected.";
+      e.returnValue =
+        "Are you sure you want to leave? Your test will be affected.";
     };
 
     const handleVisibilityChange = () => {
       if (document.hidden && !hasSubmittedRef.current) {
-        alert("Warning: You switched tabs or minimized the screen! Your test has been auto-submitted to prevent cheating.");
+        alert(
+          "Warning: You switched tabs or minimized the screen! Your test has been auto-submitted to prevent cheating.",
+        );
         handleSubmitTest(true);
       }
     };
@@ -153,7 +169,6 @@ const handleSubmitTest = (forceSubmit = false) => {
 
   return (
     <section
-      // SECURITY: select-none prevents highlighting text. Added a subtle gradient background.
       className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-20 pb-12 px-4 sm:px-6 lg:px-8 select-none"
       onContextMenu={(e) => e.preventDefault()}
       onCopy={(e) => e.preventDefault()}
@@ -161,12 +176,8 @@ const handleSubmitTest = (forceSubmit = false) => {
       onCut={(e) => e.preventDefault()}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-        
-        {/* Main Question Area */}
         <div className="lg:col-span-3 order-1 lg:order-none">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
-            
-            {/* Progress Bar */}
             <div className="h-1.5 w-full bg-slate-100">
               <div
                 className="h-full bg-indigo-600 transition-all duration-500 ease-out"
@@ -175,8 +186,6 @@ const handleSubmitTest = (forceSubmit = false) => {
             </div>
 
             <div className="p-5 sm:p-8 md:p-10 flex-1 flex flex-col">
-              
-              {/* Header: Subject & Timer */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
                 <span className="text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-100">
                   {currentQuestion.subject}
@@ -188,15 +197,15 @@ const handleSubmitTest = (forceSubmit = false) => {
                 </div>
               </div>
 
-              {/* Question Text */}
               <div className="mb-8 sm:mb-10">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 leading-relaxed">
-                  <span className="text-indigo-600 mr-2 text-xl sm:text-2xl md:text-3xl">Q{currentIndex + 1}.</span>
+                  <span className="text-indigo-600 mr-2 text-xl sm:text-2xl md:text-3xl">
+                    Q{currentIndex + 1}.
+                  </span>
                   {currentQuestion.text}
                 </h2>
               </div>
 
-              {/* Options */}
               <div className="grid grid-cols-1 gap-3 sm:gap-4 mb-10 flex-1">
                 {currentQuestion.options.map((opt, i) => {
                   const isSelected = selectedAnswers[currentIndex] === i;
@@ -231,7 +240,6 @@ const handleSubmitTest = (forceSubmit = false) => {
                 })}
               </div>
 
-              {/* Bottom Navigation */}
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-slate-100 mt-auto">
                 <button
                   onClick={prevQuestion}
@@ -261,12 +269,12 @@ const handleSubmitTest = (forceSubmit = false) => {
           </div>
         </div>
 
-        {/* Sidebar: Question Palette */}
         <div className="lg:col-span-1 order-2 lg:order-none">
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-6 lg:top-28">
-            <h3 className="font-bold text-slate-800 mb-4 text-center lg:text-left">Question Palette</h3>
-            
-            {/* Dynamic grid for better mobile fitting */}
+            <h3 className="font-bold text-slate-800 mb-4 text-center lg:text-left">
+              Question Palette
+            </h3>
+
             <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-5 gap-2 sm:gap-2.5">
               {testData.questions.map((_, i) => (
                 <button
@@ -289,17 +297,16 @@ const handleSubmitTest = (forceSubmit = false) => {
 
             <div className="mt-8 pt-6 border-t border-slate-100 space-y-4">
               <div className="flex items-center gap-3 text-sm font-semibold text-slate-600">
-                <div className="w-5 h-5 rounded-md bg-emerald-500 shadow-sm shadow-emerald-200" /> 
+                <div className="w-5 h-5 rounded-md bg-emerald-500 shadow-sm shadow-emerald-200" />
                 <span>Answered</span>
               </div>
               <div className="flex items-center gap-3 text-sm font-semibold text-slate-600">
-                <div className="w-5 h-5 rounded-md bg-slate-100 border border-slate-200" /> 
+                <div className="w-5 h-5 rounded-md bg-slate-100 border border-slate-200" />
                 <span>Not Answered</span>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
