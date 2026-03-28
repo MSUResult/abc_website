@@ -84,63 +84,8 @@
   },
   {
     "type": "JEE",
-    "batch": "Gamma",
-    "slug": "jee-gamma-batch-target-2027",
-    "Heading": "JEE Gamma Batch: Target 2027",
-    "content": "Master the core concepts of Physics, Chemistry, and Mathematics with our interactive live sessions and cutting-edge study material.",
-    "class": "Dropper",
-    "Duration": "1 Year",
-    "Language": "English",
-    "Batches": "Offline Batches",
-    "starting_from": "15th April, 2026",
-    "eligibility": "Students scoring 400+ marks in previous JEE attempt",
-    "features": [
-      "Daily Practice Problems (DPP)",
-      "Weekly All-India Test Series",
-      "Personal Mentorship Sessions",
-      "24/7 Doubt Clearing Support"
-    ],
-    "why": [
-      {
-        "img": "/result/abdullah_azeem.png",
-        "name": "Abdullah Azeem",
-        "Rank": "AIR 68",
-        "info": "Enrolled in this course | JEE Advanced 2025 | IIT Roorkee"
-      }
-    ]
-  },
-  {
-    "type": "JEE",
-    "batch": "Beta",
-    "slug": "jee-beta-batch-target-2027",
-    "Heading": "JEE Beta Batch: Target 2027",
-    "content": "Master the core concepts of Physics, Chemistry, and Mathematics with our interactive live sessions and cutting-edge study material.",
-    "class": "Dropper",
-    "Duration": "1 Year",
-    "Language": "Hindi + English",
-    "Batches": "Live Interactive Course",
-    "starting_from": "15th May, 2026",
-    "eligibility": "Students scoring 300+ marks in previous JEE attempt",
-    "features": [
-      "Daily Practice Problems (DPP)",
-      "Weekly All-India Test Series",
-      "Personal Mentorship Sessions",
-      "24/7 Doubt Clearing Support"
-    ],
-    "why": [
-      {
-        "img": "/result/abdullah_azeem.png",
-        "name": "Abdullah Azeem",
-        "Rank": "AIR 68",
-        "info": "Enrolled in this course | JEE Advanced 2025 | IIT Roorkee"
-      }
-    ]
-  },
-  {
-    "type": "JEE",
-    "batch": "Alpha",
     "slug": "jee-alpha-batch-target-2027",
-    "Heading": "JEE Alpha Batch: Target 2027",
+    "Heading": "JEE Batch: Target 2027",
     "content": "Master the core concepts of Physics, Chemistry, and Mathematics with our interactive live sessions and cutting-edge study material.",
     "class": "Dropper",
     "Duration": "1 Year",

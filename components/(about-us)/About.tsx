@@ -14,7 +14,7 @@ const founders = [
   {
     name: "Mr. Shakir Ansari",
     title: "Manager of ABC Institutes",
-    src: "/shakir.jpeg",
+    src: "/Shakirans.jpeg",
     bio: "Expert in operational strategy and governance, ensuring that the institution maintains the highest standards of student welfare and administrative efficiency.",
   },
 ];

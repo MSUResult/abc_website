@@ -29,25 +29,29 @@ const TestSeries = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-6xl mx-auto">
       {resources?.map((item) => {
-      const startDate = new Date(item.startDate);
-const isValidDate = !isNaN(startDate.getTime());
-const isUpcoming = now < startDate;
-const isLive = now >= startDate;
+        const startDate = new Date(item.startDate);
+        const isValidDate = !isNaN(startDate.getTime());
+        const isUpcoming = now < startDate;
+        const isLive = now >= startDate;
 
         return (
           <div
             key={item.id}
             className={`group relative bg-white rounded-2xl border transition-all duration-300 ${
-              isLive 
-                ? "border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1" 
+              isLive
+                ? "border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1"
                 : "border-gray-100 bg-gray-50/30"
             }`}
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <span className={`flex h-2 w-2 rounded-full ${isLive ? "bg-emerald-500 animate-pulse" : "bg-gray-300"}`} />
-                  <span className={`text-[11px] font-bold uppercase tracking-widest ${isLive ? "text-emerald-600" : "text-gray-400"}`}>
+                  <span
+                    className={`flex h-2 w-2 rounded-full ${isLive ? "bg-emerald-500 animate-pulse" : "bg-gray-300"}`}
+                  />
+                  <span
+                    className={`text-[11px] font-bold uppercase tracking-widest ${isLive ? "text-emerald-600" : "text-gray-400"}`}
+                  >
                     {isLive ? "Live Now" : "Upcoming"}
                   </span>
                 </div>
@@ -62,7 +66,9 @@ const isLive = now >= startDate;
 
               <div className="flex items-center text-sm text-gray-500 mb-8">
                 <Clock size={14} className="mr-2 text-gray-400" />
-                <span className="font-medium">Scheduled: {formatFullDate(item.startDate)}</span>
+                <span className="font-medium">
+                  Scheduled: {formatFullDate(item.startDate)}
+                </span>
               </div>
 
               {isLive ? (

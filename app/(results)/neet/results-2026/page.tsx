@@ -8,13 +8,9 @@ const Page = () => {
   const NeetResults = results.filter((res) => res.course === "NEET");
 
   const banners = [
-    { src: "/result/neet.jpeg", alt: "NEET Results" },
-    { src: "/result/neetUrl.jpeg", alt: "NEET Link" },
-    { src: "/result/both2.jpeg", alt: "Result Both 2" },
-    { src: "/result/both3.jpeg", alt: "Result Both 3" },
-    { src: "/result/both4.jpeg", alt: "Result Both 4" },
-    { src: "/result/resultboth.jpeg", alt: "Combined Results" },
-    { src: "/result/neetRanker.jpeg", alt: "NEET Rankers" },
+    { src: "/result/neet/neet.jpeg", alt: "NEET Results" },
+    { src: "/result/neet/neetResult.jpeg", alt: "Combined Results" },
+    { src: "/result/neet/neetRanker.jpeg", alt: "NEET Rankers" },
   ];
 
   // Animation Variants
@@ -128,27 +124,34 @@ const Page = () => {
           </div>
 
           {/* Animated Staggered Grid */}
+          {/* Animated Uniform Grid */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
+            // 1. CHANGED: Switched from 'columns' to 'grid' for perfectly even rows and columns
+            className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8"
           >
             {banners.map((banner, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="break-inside-avoid group relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 hover:border-amber-400/50 transition-all duration-500 bg-slate-900"
+                // 2. CHANGED: Added 'aspect-[4/5]' to force every card into the exact same tall rectangle shape.
+                // Removed 'break-inside-avoid' (only used for columns, not grid).
+                className="group relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 hover:border-amber-400/50 transition-all duration-500 "
               >
+                {/* 3. CHANGED: Replaced hardcoded width/height with 'fill'. This tells Next.js to perfectly fill the aspect-[4/5] parent container. */}
                 <Image
                   src={banner.src}
                   alt={banner.alt}
-                  width={800}
-                  height={1000}
-                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-co object-top transition-transform duration-700 group-hover:scale-[1.05]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Gradient Overlay for a premium look on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
