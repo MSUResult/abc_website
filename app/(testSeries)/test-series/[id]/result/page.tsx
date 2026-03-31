@@ -3,27 +3,29 @@ import ResultClient from "@/components/(Result)/ResultClient";
 import { connectDB } from "@/lib/db/db";
 import { QuizResult } from "@/lib/models/quiz";
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 
 export default async function ResultPage({ params }) {
-  // Optimization: Use auth() here too for faster page loads
   const { userId } = await auth();
-
-  if (!userId) redirect("/login");
   const { id } = await params;
 
-  await connectDB();
+  let isAlreadySaved = false;
 
-  // 🔥 Check if result already exists (Fixed: changed quizId to testId)
-  const existingAttempt = await QuizResult.findOne({
-    userId: userId,
-    testId: Number(id),
-  }).lean();
+  // 🔥 Check DB ONLY if the user is logged in
+  if (userId) {
+    await connectDB();
+    const existingAttempt = await QuizResult.findOne({
+      userId: userId,
+      testId: Number(id),
+    }).lean();
+
+    isAlreadySaved = Boolean(existingAttempt);
+  }
 
   return (
     <ResultClient
       testId={id}
-      isAlreadySaved={Boolean(existingAttempt)}
+      isAlreadySaved={isAlreadySaved}
+      isLoggedIn={Boolean(userId)} // Pass auth state to the client
     />
   );
 }
