@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
-
 import { z } from "zod";
+import { motion } from "framer-motion";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const formSchema = z.object({
   name: z
@@ -19,14 +20,14 @@ const formSchema = z.object({
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (loading) return; // prevent double submit
+    if (loading) return;
 
     setLoading(true);
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
     const result = formSchema.safeParse(data);
@@ -49,7 +50,7 @@ const ContactPage = () => {
       const response = await res.json();
       console.log(response);
 
-      e.target.reset(); // reset form after success
+      (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.log(error);
     }
@@ -57,15 +58,25 @@ const ContactPage = () => {
     setLoading(false);
   };
 
+  // Framer motion variants for the "up from down" animation
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
-    // Changed bg-red-400 to bg-gray-50 for a clean, modern look
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4 py-12 mt-12">
-      {/* Main Contact Card */}
-      <section className="bg-white max-w-5xl mx-auto w-full shadow-lg rounded-2xl p-8 md:p-12">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4 py-12 mt-12 overflow-hidden">
+      {/* Main Contact Section */}
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="bg-white max-w-5xl mx-auto w-full shadow-lg rounded-2xl p-8 md:p-12 border-t-4 border-t-red-600"
+      >
         {/* Centered Main Title */}
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
-            Contact Us
+            Get in Touch
           </h1>
           <p className="text-gray-500 max-w-xl mx-auto">
             If you have any questions, feel free to write to us. Our team will
@@ -90,7 +101,6 @@ const ContactPage = () => {
                     name="name"
                     type="text"
                     placeholder="John Doe"
-                    // Changed focus ring to match the red button theme
                     className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                   />
                 </div>
@@ -147,88 +157,97 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full font-bold px-6 py-3 rounded-lg transition-colors shadow-md shadow-red-200
-  ${
-    loading
-      ? "bg-gray-400 cursor-not-allowed"
-      : "bg-red-600 hover:bg-red-700 text-white"
-  }
-  `}
+                className={`w-full font-bold px-6 py-3 rounded-lg transition-all shadow-md 
+                ${
+                  loading
+                    ? "bg-gray-400 cursor-not-allowed shadow-none"
+                    : "bg-red-600 hover:bg-red-700 text-white shadow-red-200 hover:shadow-lg hover:-translate-y-0.5"
+                }`}
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
 
-          {/* RIGHT SIDE: INFO */}
-          <div className="flex flex-col space-y-8">
-            {/* Contact Info Block */}
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-              <h3 className="font-bold text-xl text-gray-900 mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4 text-gray-600">
-                <p className="flex items-center gap-3">
-                  <span className="font-semibold text-gray-900 min-w-[70px]">
-                    Phone:
-                  </span>
-                  +91 98975 11632
+          {/* RIGHT SIDE: INFO CARDS */}
+          <div className="flex flex-col space-y-4">
+            
+            {/* Phone Card */}
+            <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center gap-5 hover:border-red-200 hover:shadow-md transition-all group">
+              <div className="bg-red-50 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                <Phone className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">Phone</h4>
+                <p className="text-gray-600">+91 7618550475</p>
+              </div>
+            </div>
+
+            {/* Email Card */}
+            <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center gap-5 hover:border-red-200 hover:shadow-md transition-all group">
+              <div className="bg-red-50 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                <Mail className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">Email</h4>
+                <p className="text-gray-600">info@example.com</p>
+              </div>
+            </div>
+
+            {/* Address Card */}
+            <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center gap-5 hover:border-red-200 hover:shadow-md transition-all group">
+              <div className="bg-red-50 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">Address</h4>
+                <p className="text-gray-600">Parsvnath Plaza, Saharanpur, UP</p>
+              </div>
+            </div>
+
+            {/* Business Hours Card */}
+            <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm mt-4 hover:border-red-200 transition-all group">
+              <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                 <Clock className="w-5 h-5 text-red-600" /> Business Hours
+              </h4>
+              <div className="space-y-3 text-sm text-gray-600">
+                <p className="flex justify-between items-center border-b border-gray-50 pb-2">
+                  <span className="font-medium text-gray-800">Mon - Fri:</span>
+                  <span>9:00 AM - 6:00 PM</span>
                 </p>
-                <p className="flex items-center gap-3">
-                  <span className="font-semibold text-gray-900 min-w-[70px]">
-                    Email:
-                  </span>
-                  info@example.com
+                <p className="flex justify-between items-center border-b border-gray-50 pb-2">
+                  <span className="font-medium text-gray-800">Saturday:</span>
+                  <span>10:00 AM - 4:00 PM</span>
                 </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-semibold text-gray-900 min-w-[70px]">
-                    Address:
-                  </span>
-                  Parsvnath Plaza, <br /> Saharanpur, UP
+                <p className="flex justify-between items-center">
+                  <span className="font-medium text-gray-800">Sunday:</span>
+                  <span className="text-red-500 font-medium">Closed</span>
                 </p>
               </div>
             </div>
 
-            {/* Business Hours Block */}
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-              <h3 className="font-bold text-xl text-gray-900 mb-6">
-                Business Hours
-              </h3>
-              <div className="space-y-3 text-gray-600">
-                <p className="flex justify-between">
-                  <span className="font-semibold text-gray-900">
-                    Monday - Friday:
-                  </span>
-                  9:00 AM - 6:00 PM
-                </p>
-                <p className="flex justify-between">
-                  <span className="font-semibold text-gray-900">Saturday:</span>
-                  10:00 AM - 4:00 PM
-                </p>
-                <p className="flex justify-between">
-                  <span className="font-semibold text-gray-900">Sunday:</span>
-                  Closed
-                </p>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* MAP SECTION */}
-      <section className="max-w-5xl w-full mx-auto mt-8 shadow-lg rounded-2xl overflow-hidden bg-white p-2">
-        {/* The iframe straight from Google Maps, styled to fit the container perfectly */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }} 
+        className="max-w-5xl w-full mx-auto mt-8 shadow-lg rounded-2xl overflow-hidden bg-white p-2 border-t-4 border-t-red-600"
+      >
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.6703554627116!2d77.54581177626993!3d29.97310062194917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ee928fdfd4cc9%3A0xc3ab53ab5478d1eb!2sParsvnath%20Plaza!5e0!3m2!1sen!2sin!4v1709424851234!5m2!1sen!2sin"
           width="100%"
           height="450"
           style={{ border: 0, borderRadius: "0.75rem" }}
-          allowFullScreen=""
+          allowFullScreen={false}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Google Map Location"
         ></iframe>
-      </section>
+      </motion.section>
     </main>
   );
 };

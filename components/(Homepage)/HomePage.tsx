@@ -7,8 +7,6 @@ import { FaVideo } from "react-icons/fa";
 import TrustSection from "./TrustSection";
 import Link from "next/link";
 
-
-
 const HomePage = () => {
   const [hover, setHover] = useState(false);
 
@@ -91,10 +89,10 @@ const HomePage = () => {
               </div>
               <div className="text-left">
                 <p className="text-[10px] md:text-xs text-gray-800 uppercase font-bold tracking-widest">
-                  Join 2,000+
+                  Dr. Shahid Ansari
                 </p>
                 <p className="text-xs md:text-sm font-bold text-gray-900">
-                  Saharanpur students today!
+                  Saharanpur Best Teacher!
                 </p>
               </div>
             </div>

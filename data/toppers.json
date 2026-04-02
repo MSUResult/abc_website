@@ -21,12 +21,28 @@
     "img": "/result/abdullah_azeem.png"
   },
   {
-    "name": "Bhavya Aggarwal",
-    "Score": "",
-    "AIR": "68",
+    "name": "Manan Madan",
+    "Score": "690",
+    "AIR": "",
     "course": "NEET",
     "year": "2024",
-    "img": "/result/Bhavya_Aggarwal.png"
+    "img": "/result/Neet/mana.jpeg"
+  },
+  {
+    "name": "Divyanshi",
+    "Score": "686",
+    "AIR": "",
+    "course": "NEET",
+    "year": "2024",
+    "img": "/result/Neet/Divyanshi.jpeg"
+  },
+  {
+    "name": "Divyansh",
+    "Score": "685",
+    "AIR": "",
+    "course": "NEET",
+    "year": "2024",
+    "img": "/result/Neet/Divyansh.jpeg"
   },
   {
     "name": "Bhavya Aggarwal",
@@ -37,19 +53,27 @@
     "img": "/result/Bhavya_Aggarwal.png"
   },
   {
-    "name": "Bhavya Aggarwal",
-    "Score": "",
+    "name": "Sayyed Afnan",
+    "Score": "675",
     "AIR": "68",
     "course": "NEET",
     "year": "2024",
-    "img": "/result/Bhavya_Aggarwal.png"
+    "img": "/result/Neet/Sayyed.jpeg"
   },
   {
-    "name": "Bhavya Aggarwal",
-    "Score": "",
+    "name": "Aryan Gupta",
+    "Score": "675",
     "AIR": "68",
     "course": "NEET",
     "year": "2024",
-    "img": "/result/Bhavya_Aggarwal.png"
+    "img": "/result/Neet/Aryan.jpeg"
+  },
+  {
+    "name": "Akshat Jain",
+    "Score": "675",
+    "AIR": "68",
+    "course": "NEET",
+    "year": "2024",
+    "img": "/result/Neet/akshat.jpeg"
   }
 ]

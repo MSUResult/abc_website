@@ -13,7 +13,9 @@ const Footer = () => {
               ABC Institute
             </h2>
             <p className="text-sm leading-relaxed text-slate-500">
-           Our institute focuses on strong concepts, disciplined preparation, and expert guidance to help students achieve top ranks in competitive exams.
+              Our institute focuses on strong concepts, disciplined preparation,
+              and expert guidance to help students achieve top ranks in
+              competitive exams.
             </p>
           </div>
 
@@ -42,7 +44,7 @@ const Footer = () => {
               <li>
                 <a
                   href="https://port.saharanpurprice.in"
-                   target="_blank"
+                  target="_blank"
                   className="hover:text-red-600 transition-colors duration-300"
                 >
                   Portfolio
@@ -89,7 +91,7 @@ const Footer = () => {
                   NEET-UG
                 </a>
               </li>
-                <li>
+              <li>
                 <a
                   href="/courses"
                   className="hover:text-red-600 transition-colors duration-300"
@@ -129,7 +131,15 @@ const Footer = () => {
         {/* Bottom Copyright Bar */}
         <div className="mt-12 pt-8 border-t border-red-100 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+            &copy; {new Date().getFullYear()} Designed & Developed by Shivansh |{" "}
+            <a
+              href="https://port.saharanpurprice.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 hover:underline hover:text-red-700 transition"
+            >
+              View Portfolio
+            </a>
           </p>
 
           {/* Social Icons Placeholder */}
