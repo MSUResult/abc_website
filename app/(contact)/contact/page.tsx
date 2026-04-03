@@ -61,7 +61,11 @@ const ContactPage = () => {
   // Framer motion variants for the "up from down" animation
   const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
@@ -171,15 +175,16 @@ const ContactPage = () => {
 
           {/* RIGHT SIDE: INFO CARDS */}
           <div className="flex flex-col space-y-4">
-            
             {/* Phone Card */}
             <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center gap-5 hover:border-red-200 hover:shadow-md transition-all group">
               <div className="bg-red-50 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
                 <Phone className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">Phone</h4>
-                <p className="text-gray-600">+91 7618550475</p>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                  Phone
+                </h4>
+                <p className="text-gray-600">+91 9897511632</p>
               </div>
             </div>
 
@@ -189,8 +194,10 @@ const ContactPage = () => {
                 <Mail className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">Email</h4>
-                <p className="text-gray-600">info@example.com</p>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                  Email
+                </h4>
+                <p className="text-gray-600">abcinstitute@gmail.com</p>
               </div>
             </div>
 
@@ -200,7 +207,9 @@ const ContactPage = () => {
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">Address</h4>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                  Address
+                </h4>
                 <p className="text-gray-600">Parsvnath Plaza, Saharanpur, UP</p>
               </div>
             </div>
@@ -208,7 +217,7 @@ const ContactPage = () => {
             {/* Business Hours Card */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm mt-4 hover:border-red-200 transition-all group">
               <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                 <Clock className="w-5 h-5 text-red-600" /> Business Hours
+                <Clock className="w-5 h-5 text-red-600" /> Business Hours
               </h4>
               <div className="space-y-3 text-sm text-gray-600">
                 <p className="flex justify-between items-center border-b border-gray-50 pb-2">
@@ -225,7 +234,6 @@ const ContactPage = () => {
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </motion.section>
@@ -234,7 +242,7 @@ const ContactPage = () => {
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }} 
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         className="max-w-5xl w-full mx-auto mt-8 shadow-lg rounded-2xl overflow-hidden bg-white p-2 border-t-4 border-t-red-600"
       >
         <iframe

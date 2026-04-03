@@ -8,9 +8,9 @@ const Page = () => {
   const NeetResults = results.filter((res) => res.course === "NEET");
 
   const banners = [
-    { src: "/result/neet/neet.jpeg", alt: "NEET Results" },
-    { src: "/result/neet/neetResult.jpeg", alt: "Combined Results" },
-    { src: "/result/neet/neetRanker.jpeg", alt: "NEET Rankers" },
+    { src: "/result/Neet/neet.jpeg", alt: "NEET Results" },
+    { src: "/result/Neet/neetResult.jpeg", alt: "Combined Results" },
+    { src: "/result/Neet/neetRanker.jpeg", alt: "NEET Rankers" },
   ];
 
   // Animation Variants
