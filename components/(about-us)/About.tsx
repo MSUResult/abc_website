@@ -147,7 +147,7 @@ const About = () => {
               >
                 <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10">
                   <Image
-                    src="/result/neetRanker.jpeg"
+                    src="/result/Neet/neetRanker.jpeg"
                     alt="Students Learning"
                     width={1200}
                     height={800}
