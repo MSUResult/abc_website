@@ -1,174 +1,153 @@
-import React from "react";
-import { Trophy, Medal, TrendingUp, TrendingDown, Minus } from "lucide-react";
+"use client";
+import React, { useMemo, useEffect, useState } from "react";
+import { Trophy, Medal, TrendingUp, TrendingDown, Minus, Zap, Target } from "lucide-react";
 import Link from "next/link";
 
-// Sample Data upgraded with 'trend' and simulating a 'isCurrentUser' flag
-const leaderboardData = [
-  {
-    id: 1,
-    rank: 1,
-    name: "Ayush Singh",
-    score: 295,
-    trend: "up",
-    image: "https://ui-avatars.com/api/?name=Ayush+Singh&background=random",
-  },
-  {
-    id: 2,
-    rank: 2,
-    name: "Riya Sharma",
-    score: 288,
-    trend: "down",
-    image: "https://ui-avatars.com/api/?name=Riya+Sharma&background=random",
-  },
-  {
-    id: 3,
-    rank: 3,
-    name: "Karan Verma",
-    score: 275,
-    trend: "up",
-    image: "https://ui-avatars.com/api/?name=Karan+Verma&background=random",
-  },
-  {
-    id: 4,
-    rank: 4,
-    name: "Sneha Patel",
-    score: 260,
-    trend: "same",
-    isCurrentUser: true,
-    image: "https://ui-avatars.com/api/?name=Sneha+Patel&background=random",
-  },
-  {
-    id: 5,
-    rank: 5,
-    name: "Rahul Gupta",
-    score: 255,
-    trend: "up",
-    image: "https://ui-avatars.com/api/?name=Rahul+Gupta&background=random",
-  },
-];
-
-const TrendIcon = ({ trend }) => {
-  if (trend === "up")
-    return <TrendingUp size={14} className="text-green-500" />;
-  if (trend === "down")
-    return <TrendingDown size={14} className="text-red-500" />;
-  return <Minus size={14} className="text-gray-400" />;
+// --- LOGIC FROM ARENA PRO ---
+const calculateNearMiss = (data) => {
+  const sorted = [...data].sort((a, b) => b.score - a.score);
+  return sorted.map((user, i) => ({
+    ...user,
+    pointsToNext: i === 0 ? 0 : sorted[i - 1].score - user.score,
+  }));
 };
 
-const LeaderBoard = () => {
+const getGapConfig = (points) => {
+  if (points <= 5) return { bg: "bg-red-100", text: "text-red-700", label: "SO CLOSE" };
+  if (points <= 15) return { bg: "bg-amber-100", text: "text-amber-700", label: `${points} XP AWAY` };
+  return { bg: "bg-gray-100", text: "text-gray-500", label: `${points} XP BEHIND` };
+};
+
+const TrendIcon = ({ trend }) => {
+  if (trend === "up") return <TrendingUp size={12} className="text-emerald-500" />;
+  if (trend === "down") return <TrendingDown size={12} className="text-red-500" />;
+  return <Minus size={12} className="text-gray-400" />;
+};
+
+const LeaderBoard = ({ currentUserId }) => {
+  const [rawData, setRawData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // --- FETCHING DATA ---
+  useEffect(() => {
+    const fetchLeaderboardData = async () => {
+      try {
+        const response = await fetch('/api/leaderboard');
+        const dbData = await response.json();
+
+        const formattedData = dbData.map((user) => ({
+          id: user.userId,
+          name: user.name,
+          score: user.totalScore,
+          trend: user.trend || "same",
+          isCurrentUser: user.userId === currentUserId,
+          image: user.imageUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=6366f1&color=fff&bold=true`
+        }));
+
+        setRawData(formattedData);
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchLeaderboardData();
+  }, [currentUserId]);
+
+  const processedData = useMemo(() => calculateNearMiss(rawData).slice(0, 5), [rawData]);
+
+  if (isLoading) {
+    return (
+      <div className="bg-white rounded-3xl p-10 border border-gray-100 flex items-center justify-center shadow-lg">
+        <div className="text-xs font-black text-indigo-600 animate-pulse uppercase tracking-widest">Loading Toppers...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden max-w-md w-full">
-      {/* Header - Made more engaging */}
+      {/* --- YOUR ORIGINAL HEADER KEPT --- */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 flex items-center justify-between relative overflow-hidden">
         <div className="relative z-10 flex items-center gap-3">
           <div className="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
             <Trophy className="text-yellow-300" size={28} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Weekly Top 5</h2>
-            <p className="text-indigo-100 text-sm font-medium">
-              Reset in 2 days
-            </p>
+            <h2 className="text-xl font-bold text-white uppercase tracking-tighter">Weekly Top 5</h2>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <p className="text-indigo-100 text-[10px] font-black uppercase tracking-widest">Live Arena</p>
+            </div>
           </div>
         </div>
-        {/* Decorative background element */}
         <div className="absolute -right-6 -top-6 w-24 h-24 bg-white opacity-10 rounded-full blur-2xl"></div>
       </div>
 
-      {/* List container */}
+      {/* --- LIST ITEMS WITH PRO LOGIC --- */}
       <div className="p-5 flex flex-col gap-3 bg-gray-50/50">
-        {leaderboardData.map((user) => (
-          <div
-            key={user.id}
-            className={`group relative flex items-center justify-between p-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
-              user.rank === 1
-                ? "bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 shadow-[0_0_15px_rgba(250,204,21,0.15)] py-4"
-                : user.rank === 2
-                  ? "bg-gradient-to-r from-gray-50 to-slate-100 border border-gray-200"
-                  : user.rank === 3
-                    ? "bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200"
-                    : user.isCurrentUser
-                      ? "bg-indigo-50 border border-indigo-200 shadow-sm"
-                      : "bg-white border border-gray-100 hover:border-gray-200"
-            }`}
-          >
-            {/* Rank & User Info */}
-            <div className="flex items-center gap-4">
-              <div className="w-8 flex flex-col items-center justify-center font-bold text-gray-500 gap-1">
-                {user.rank === 1 ? (
-                  <Medal size={28} className="text-yellow-500 drop-shadow-sm" />
-                ) : user.rank === 2 ? (
-                  <Medal size={24} className="text-slate-400" />
-                ) : user.rank === 3 ? (
-                  <Medal size={24} className="text-orange-500" />
-                ) : (
-                  <span className="text-lg text-gray-400">#{user.rank}</span>
-                )}
+        {processedData.map((user, index) => {
+          const rank = index + 1;
+          const gap = getGapConfig(user.pointsToNext);
 
-                {/* Trend Indicator directly under rank */}
-                {user.rank > 3 && <TrendIcon trend={user.trend} />}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <img
-                    src={user.image}
-                    alt={user.name}
-                    className={`object-cover rounded-full border-2 shadow-sm ${
-                      user.rank === 1
-                        ? "w-12 h-12 border-yellow-400"
-                        : "w-10 h-10 border-white"
-                    }`}
-                  />
-                  {user.rank <= 3 && (
-                    <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-sm border border-gray-100">
-                      <TrendIcon trend={user.trend} />
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <p
-                    className={`font-bold ${user.isCurrentUser ? "text-indigo-700" : "text-gray-800"} text-sm flex items-center gap-2`}
-                  >
-                    {user.name}
-                    {user.isCurrentUser && (
-                      <span className="bg-indigo-100 text-indigo-700 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">
-                        You
-                      </span>
-                    )}
-                  </p>
-                  <p className="text-xs text-gray-500 font-medium">
-                    {user.score} XP
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Score Highlight */}
+          return (
             <div
-              className={`font-black text-lg px-4 py-2 rounded-xl shadow-sm border ${
-                user.rank === 1
-                  ? "bg-yellow-400 text-yellow-900 border-yellow-500"
-                  : user.rank === 2
-                    ? "bg-gray-200 text-gray-700 border-gray-300"
-                    : user.rank === 3
-                      ? "bg-orange-200 text-orange-800 border-orange-300"
-                      : user.isCurrentUser
-                        ? "bg-indigo-600 text-white border-indigo-700"
-                        : "bg-gray-100 text-gray-700 border-gray-200 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors"
+              key={user.id}
+              className={`group relative flex items-center justify-between p-3 rounded-2xl transition-all duration-300 ${
+                user.isCurrentUser 
+                ? "bg-indigo-50 border border-indigo-200 shadow-sm" 
+                : "bg-white border border-gray-100 hover:border-gray-200"
               }`}
             >
-              {user.score}
+              {/* Rank & User Info */}
+              <div className="flex items-center gap-4">
+                <div className="w-8 flex flex-col items-center justify-center font-bold text-gray-500 gap-1">
+                  {rank === 1 ? <Medal size={28} className="text-yellow-500" /> : 
+                   rank === 2 ? <Medal size={24} className="text-slate-400" /> :
+                   rank === 3 ? <Medal size={24} className="text-orange-500" /> :
+                   <span className="text-lg text-gray-300">#{rank}</span>}
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <img
+                      src={user.image}
+                      alt={user.name}
+                      className={`object-cover rounded-full border-2 ${rank === 1 ? "w-11 h-11 border-yellow-400" : "w-9 h-9 border-white shadow-sm"}`}
+                    />
+                    {rank === 1 && <Zap size={12} className="absolute -top-1 -right-1 text-yellow-500 fill-yellow-500" />}
+                  </div>
+                  <div className="flex flex-col">
+                    <p className={`font-bold text-sm flex items-center gap-1.5 ${user.isCurrentUser ? "text-indigo-700" : "text-gray-800"}`}>
+                      {user.name}
+                      <TrendIcon trend={user.trend} />
+                    </p>
+                    {/* The "Overtake Goal" label under the name */}
+                    {rank > 1 && (
+                      <span className={`text-[8px] font-black w-fit px-1.5 py-0.5 rounded uppercase ${gap.bg} ${gap.text}`}>
+                        {gap.label}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Score Box */}
+              <div className={`font-black text-sm px-3 py-1.5 rounded-lg border shadow-sm ${
+                rank === 1 ? "bg-yellow-400 text-yellow-900 border-yellow-500" :
+                user.isCurrentUser ? "bg-indigo-600 text-white border-indigo-700" :
+                "bg-white text-gray-700 border-gray-100"
+              }`}>
+                {user.score}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Footer / View All */}
+      {/* Footer */}
       <div className="p-4 bg-white border-t border-gray-100">
-        {/* If using Next.js, import Link from 'next/link' */}
         <Link href="/saharanpur-toppers" className="block w-full">
-          <button className="w-full py-2 cursor-pointer text-sm font-bold text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors focus:ring-4 focus:ring-indigo-100">
+          <button className="w-full py-2 text-sm font-bold text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors uppercase tracking-widest">
             Explore Full Rankings
           </button>
         </Link>

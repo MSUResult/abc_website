@@ -149,9 +149,56 @@ const ScoreBar = ({ score, max, isUser }) => {
   );
 };
 
-export default function FullLeaderboardPage() {
-  const processedData = useMemo(() => calculateNearMiss(rawData), []);
+export default function FullLeaderboardPage({currentUserId}) {
+  const [rawData, setRawData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // 1. Replace the static rawData with React state
+
+// 2. Fetch the real data when the component loads
+  useEffect(() => {
+    const fetchLeaderboardData = async () => {
+      try {
+        const response = await fetch('/api/leaderboard');
+        const dbData = await response.json();
+
+        // 3. Map the database fields to match your UI's exact format
+        const formattedData = dbData.map((user) => ({
+          id: user.userId,                   // Map db userId to UI id
+          name: user.name,                   // Same
+          score: user.totalScore,            // Map db totalScore to UI score
+          trend: "same",                     // Default trend (you can add DB logic for this later)
+          isCurrentUser: user.userId === currentUserId, // Check if this row is the logged-in user
+          image: user.imageUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=6366f1&color=fff&bold=true`
+        }));
+
+        setRawData(formattedData);
+      } catch (error) {
+        console.error("Error fetching real leaderboard data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLeaderboardData();
+  }, [currentUserId]);
+
+    const processedData = useMemo(() => calculateNearMiss(rawData), [rawData]);
   const topScore = processedData[0]?.score || 1;
+
+  // Optional: Show a loading state while fetching
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50/50 flex items-center justify-center">
+        <div className="text-indigo-600 font-bold uppercase tracking-widest animate-pulse">
+          Loading Arena Data...
+        </div>
+      </div>
+    );
+  }
+
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-50/50">

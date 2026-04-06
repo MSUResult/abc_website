@@ -30,17 +30,17 @@ const slides = [
     accentColor: "text-red-100",
     price: "3000",
   },
-  // {
-  //   id: 3,
-  //   title: "New Batches Starting",
-  //   highlight: "ADMISSIONS OPEN",
-  //   subtitle: "IIT , JEE , NEET New Batches Started ",
-  //   description: "Get up to 90% scholarship on our classroom courses.",
-  //   cta: "Apply Now",
-  //   src: "/courosol/abc3.jpg",
-  //   bgColor: "bg-red-950",
-  //   accentColor: "text-red-200",
-  // },
+  {
+    id: 3,
+    title: "New Batches Starting",
+    highlight: "Class 6 to class12",
+    subtitle: "Strong foundation for Classes 6–12 with expert guidance.",
+    description: "Get up to 90% scholarship on our classroom courses.",
+    cta: "Apply Now",
+    src: "/course/sixtoeight.jpeg",
+    bgColor: "bg-red-600",
+    accentColor: "text-red-200",
+  },
 ];
 
 const Carousel = () => {
@@ -119,23 +119,25 @@ const Carousel = () => {
               </div>
 
               {/* PRICE RELATIVE */}
-              <div className="absolute z-20 top-2  right-6 md:top-10 md:right-10 rotate-[-4deg]">
-                <div className="px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl">
-                  <p className="text-white text-xs font-semibold uppercase tracking-wide opacity-80">
-                    Special Price
-                  </p>
+           {slide.price && (
+  <div className="absolute z-20 top-2 right-6 md:top-10 md:right-10 rotate-[-4deg]">
+    <div className="px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl">
+      <p className="text-white text-xs font-semibold uppercase tracking-wide opacity-80">
+        Special Price
+      </p>
 
-                  <div className="flex items-end gap-2">
-                    <p className="text-white font-extrabold text-xl md:text-2xl leading-none">
-                      ₹{slide.price}
-                    </p>
+      <div className="flex items-end gap-2">
+        <p className="text-white font-extrabold text-xl md:text-2xl leading-none">
+          ₹{slide.price}
+        </p>
 
-                    <span className="text-white/60 text-sm font-semibold line-through">
-                      ₹{parseInt(slide.price) + 5000}
-                    </span>
-                  </div>
-                </div>
-              </div>
+        <span className="text-white/60 text-sm font-semibold line-through">
+          ₹{parseInt(slide.price) + 5000}
+        </span>
+      </div>
+    </div>
+  </div>
+)}
 
               {/* RIGHT SIDE: IMAGE */}
               {/* FIX 4: Image takes up remaining space and scales dynamically instead of fixed hardcoded pixels */}

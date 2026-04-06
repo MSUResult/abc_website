@@ -37,7 +37,7 @@ const HomePage = () => {
 
             <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
               <Link
-                href={"/"}
+                href={"/contact"}
                 className="group bg-red-600 hover:bg-red-700 text-white py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl shadow-red-200 flex items-center gap-2 hover:-translate-y-1"
               >
                 Get Started
