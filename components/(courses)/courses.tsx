@@ -1,9 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import data from "../../data/course.json";
-import ContactComing from "../(Homepage)/ContactComing";
 
 const TABS = [
   { label: "JEE", value: "JEE" },
@@ -15,7 +15,6 @@ const TABS = [
 
 export default function Courses() {
   const [choose, setChoose] = useState("JEE");
-  const [open, setOpen] = useState(false);
 
   const filteredCourses = data.filter((it) =>
     Array.isArray(choose) ? choose.includes(it.type) : it.type === choose,
@@ -23,16 +22,6 @@ export default function Courses() {
 
   return (
     <main className="min-h-screen bg-slate-50 py-16">
-      {open && (
-        <div className="fixed inset-0 z-50 px-4 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
-          <ContactComing close={() => setOpen(false)} />
-        </div>
-      )}
-
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <header className="text-center max-w-2xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
@@ -142,13 +131,7 @@ export default function Courses() {
                   </div>
 
                   <div className="px-6 pb-6 mt-auto">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpen(true);
-                      }}
-                      className="w-full bg-red-900 text-white py-3 rounded-xl font-bold hover:bg-red-400 transition-all active:scale-95"
-                    >
+                    <button className="w-full bg-red-900 text-white py-3 rounded-xl font-bold hover:bg-red-400 transition-all active:scale-95">
                       Enroll Now
                     </button>
                   </div>

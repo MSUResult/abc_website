@@ -11,7 +11,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th April, 2026",
+    "starting_from": "23rd March, 2026",
     "eligibility": "Students scoring 400+ marks in previous NEET attempt",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -38,7 +38,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th April, 2026",
+    "starting_from": "23rd March, 2026",
     "eligibility": "Students scoring 300 + marks in previous NEET attempt",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -65,7 +65,7 @@
     "Duration": "1 Year",
     "Language": "English",
     "Batches": "Offline Course",
-    "starting_from": "15th April, 2026",
+    "starting_from": "23rd March, 2026",
     "eligibility": "Available for every student",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -91,7 +91,7 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Live Interactive Course",
-    "starting_from": "15th May, 2026",
+    "starting_from": "23rd March, 2026",
     "eligibility": "Available for every student",
     "features": [
       "Daily Practice Problems (DPP)",
@@ -117,7 +117,7 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Live Course",
-    "starting_from": "10th April, 2026"
+    "starting_from": "23rd March, 2026"
   },
   {
     "type": "6-8",
@@ -128,7 +128,7 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Live Course",
-    "starting_from": "10th April, 2026"
+    "starting_from": "23rd March, 2026"
   },
   {
     "type": "6-8",
@@ -139,7 +139,8 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Live Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": ["/course/sixtoeight.jpeg"],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -156,7 +157,8 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": ["/course/nineto10.jpeg", "/course/ninetotenth.jpeg"],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -173,7 +175,8 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": ["/course/nineto10.jpeg", "/course/ninetotenth.jpeg"],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -190,7 +193,13 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": [
+      "/course/eleven12.jpeg",
+      "/course/eleventwel.jpeg",
+      "/course/twelveeleven.jpeg",
+      "/course/eltwelve.jpeg"
+    ],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -207,7 +216,13 @@
     "Duration": "2 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": [
+      "/course/eleven12.jpeg",
+      "/course/eleventwel.jpeg",
+      "/course/twelveeleven.jpeg",
+      "/course/eltwelve.jpeg"
+    ],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -224,7 +239,13 @@
     "Duration": "2 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": [
+      "/course/eleven12.jpeg",
+      "/course/eleventwel.jpeg",
+      "/course/twelveeleven.jpeg",
+      "/course/eltwelve.jpeg"
+    ],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -241,7 +262,13 @@
     "Duration": "2 Year",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
+    "images": [
+      "/course/eleven12.jpeg",
+      "/course/eleventwel.jpeg",
+      "/course/twelveeleven.jpeg",
+      "/course/eltwelve.jpeg"
+    ],
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -258,7 +285,7 @@
     "Duration": "1 Year",
     "Language": "Hindi + English",
     "Batches": "Live Course",
-    "starting_from": "10th April, 2026",
+    "starting_from": "23rd March, 2026",
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -275,7 +302,7 @@
     "Duration": "2 Year",
     "Language": "English",
     "Batches": "Live + Doubt Sessions",
-    "starting_from": "5th April, 2026",
+    "starting_from": "23rd March, 2026",
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",
@@ -292,7 +319,7 @@
     "Duration": "2 Months",
     "Language": "Hindi + English",
     "Batches": "Offline Course",
-    "starting_from": "2nd April, 2026",
+    "starting_from": "23rd March, 2026",
     "features": [
       "Daily Practice Problems (DPP)",
       "Weekly All-India Test Series",

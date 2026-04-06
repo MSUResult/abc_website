@@ -93,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/courses"
+                  href="/ielts"
                   className="hover:text-red-600 transition-colors duration-300"
                 >
                   ILETS | PTE | SPOKEN ENGLISH

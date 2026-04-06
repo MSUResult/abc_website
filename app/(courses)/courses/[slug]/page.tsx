@@ -1,16 +1,15 @@
-"use client"; // Required for useState
+"use client";
 
 import data from "@/data/course.json";
 import Image from "next/image";
 import Link from "next/link";
-import { use, useState } from "react"; // Added useState
-import ContactComing from "@/components/(Homepage)/ContactComing"; // Make sure the path is correct
+import { use, useState } from "react";
+import ContactComing from "@/components/(Homepage)/ContactComing";
 
 const CourseDetail = ({ params }) => {
   const resolvedParams = use(params);
   const currentSlug = resolvedParams.slug;
 
-  // --- State for the Contact Card ---
   const [isOpen, setOpen] = useState(false);
 
   const course = data.find(
@@ -39,13 +38,10 @@ const CourseDetail = ({ params }) => {
       {/* --- POPUP MODAL --- */}
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setOpen(false)} // Close when clicking outside
+            onClick={() => setOpen(false)}
           ></div>
-
-          {/* Contact Card Container */}
           <div className="relative z-10 w-full max-w-md">
             <button
               onClick={() => setOpen(false)}
@@ -76,9 +72,11 @@ const CourseDetail = ({ params }) => {
             <span className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
               {course.type} BATCH
             </span>
-            <span className="bg-yellow-400 text-yellow-950 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md">
-              Batch: {course.batch}
-            </span>
+            {course.batch && (
+              <span className="bg-yellow-400 text-yellow-950 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md">
+                Batch: {course.batch}
+              </span>
+            )}
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.15] tracking-tight max-w-4xl">
@@ -93,6 +91,7 @@ const CourseDetail = ({ params }) => {
       {/* Main Content Area */}
       <div className="max-w-6xl mx-auto px-4 relative z-20 -mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
+          {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: "Level", value: course.class },
@@ -115,37 +114,73 @@ const CourseDetail = ({ params }) => {
           </div>
 
           <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-            <h2 className="text-2xl font-black mb-8 text-gray-900 flex items-center gap-3">
-              <span className="w-6 h-1 bg-red-600 rounded-full"></span>
-              Why join this batch?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {course.features?.map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 hover:bg-red-50/50 hover:border-red-100 border border-transparent transition-all"
-                >
-                  <div className="bg-green-100 p-1.5 rounded-full shrink-0">
-                    <svg
-                      className="w-4 h-4 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+            {/* Features Section - Only shows if features exist */}
+            {course.features && course.features.length > 0 && (
+              <div className="mb-10">
+                <h2 className="text-2xl font-black mb-8 text-gray-900 flex items-center gap-3">
+                  <span className="w-6 h-1 bg-red-600 rounded-full"></span>
+                  Why join this batch?
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {course.features.map((feature, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 hover:bg-red-50/50 hover:border-red-100 border border-transparent transition-all"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-gray-700 font-semibold text-sm leading-snug pt-0.5">
-                    {feature}
-                  </p>
+                      <div className="bg-green-100 p-1.5 rounded-full shrink-0">
+                        <svg
+                          className="w-4 h-4 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-gray-700 font-semibold text-sm leading-snug pt-0.5">
+                        {feature}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
+
+            {/* Batch Gallery - Only shows if images exist */}
+            {course.images && course.images.length > 0 && (
+              <div
+                className={`${course.features?.length > 0 ? "mt-12 pt-8 border-t border-gray-100" : ""}`}
+              >
+                <h3 className="text-xl font-black mb-6 text-gray-900 flex items-center gap-3">
+                  <span className="w-4 h-1 bg-gray-900 rounded-full"></span>
+                  Batch Gallery
+                </h3>
+                <div className="flex flex-wrap gap-4">
+                  {course.images.map((imgSrc, i) => (
+                    <div
+                      key={i}
+                      className={`relative h-64 md:h-80 w-full rounded-2xl overflow-hidden shadow-md  transition-transform hover:scale-[1.01] ${
+                        course.images.length === 1
+                          ? "w-full"
+                          : "w-full md:w-[calc(50%-8px)]"
+                      }`}
+                    >
+                      <Image
+                        src={imgSrc}
+                        fill
+                        alt={`${course.Heading} glimpse ${i + 1}`}
+                        className="object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -181,9 +216,8 @@ const CourseDetail = ({ params }) => {
                 </div>
               </div>
 
-              {/* --- UPDATED BUTTON --- */}
               <button
-                onClick={() => setOpen(true)} // Opens the modal
+                onClick={() => setOpen(true)}
                 className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-4 rounded-xl shadow-lg shadow-red-600/20 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide"
               >
                 ENROLL NOW
@@ -201,7 +235,6 @@ const CourseDetail = ({ params }) => {
                   />
                 </svg>
               </button>
-
               <p className="text-center text-[10px] text-gray-400 mt-5 font-bold uppercase tracking-widest">
                 Limited Seats Available
               </p>
