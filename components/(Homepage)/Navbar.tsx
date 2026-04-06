@@ -147,7 +147,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={() => router.push("/login")}
-                  className="px-8 py-3 rounded-xl bg-red-600 text-white text-sm font-bold shadow-lg hover:bg-red-700 transition-all"
+                  className="cursor-pointer px-8 py-3 rounded-xl bg-red-600 text-white text-sm font-bold shadow-lg hover:bg-red-700 transition-all"
                 >
                   Login
                 </button>

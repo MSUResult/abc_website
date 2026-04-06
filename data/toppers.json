@@ -6,8 +6,43 @@
     "year": "2024",
     "img": "/result/abdullah_azeem.png"
   },
-  
   {
+    "name": "Monish",
+    "Score": "700",
+    "course": "JEE",
+    "year": "2024",
+    "img": "/result/JEE/1.png"
+  },
+  {
+    "name": "Ashutosh",
+    "Score": "700",
+    "course": "JEE",
+    "year": "2024",
+    "img": "/result/JEE/2.png"
+  },
+  {
+    "name": "A.B. Azeem",
+    "Score": "700",
+    "course": "JEE",
+    "year": "2024",
+    "img": "/result/JEE/3.png"
+  },
+    {
+    "name": "Saniya",
+    "Score": "700",
+    "course": "JEE",
+    "year": "2024",
+    "img": "/result/JEE/4.png"
+  },
+
+  {
+    "name": "Aakarsh",
+    "Score": "700",
+    "course": "JEE",
+    "year": "2024",
+    "img": "/result/JEE/5.png"
+  },
+    {
     "name": "Manan Madan",
     "Score": "690",
     "AIR": "",
@@ -62,5 +97,45 @@
     "course": "NEET",
     "year": "2024",
     "img": "/result/Neet/akshat.jpeg"
+  },
+    {
+    "name": "Vidhushi",
+    "Score": "675",
+    "AIR": "68",
+    "course": "Academic",
+    "year": "2024",
+    "img": "/result/academic/1.png"
+  },
+    {
+    "name": "Vandita",
+    "Score": "675",
+    "AIR": "68",
+        "course": "Academic",
+    "year": "2024",
+   "img": "/result/academic/2.png"
+  },
+    {
+    "name": "Ananta",
+    "Score": "675",
+    "AIR": "68",
+    "course": "Academic",
+    "year": "2024",
+   "img": "/result/academic/4.png"
+  },
+    {
+    "name": "Anshika",
+    "Score": "675",
+    "AIR": "68",
+      "course": "Academic",
+    "year": "2024",
+"img": "/result/academic/5.png"
+  },
+    {
+    "name": "Faiz",
+    "Score": "675",
+    "AIR": "68",
+    "course": "Academic",
+    "year": "2024",
+"img": "/result/academic/8.png"
   }
 ]

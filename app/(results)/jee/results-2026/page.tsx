@@ -1,21 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import results from "@/data/toppers.json";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ContactComing from "@/components/(Homepage)/ContactComing";
 
 const Page = () => {
   // 1. FILTERING THE DATA
   // We only want items where the course is exactly "JEE"
+
+      const [open, setOpen] = useState(false);
+  
+
   const jeeResults = results.filter((res) => res.course === "JEE");
 
   const banners = [
-    // { src: "/result/neet.jpeg", alt: "JEE Results" },
-    { src: "/result/both2.jpeg", alt: "Result Both 2" },
-    { src: "/result/both3.jpeg", alt: "Result Both 3" },
-    { src: "/result/both4.jpeg", alt: "Result Both 4" },
-    { src: "/result/resultboth.jpeg", alt: "Combined Results" },
+    // { src: "/result/JEE/neet.jpeg", alt: "JEE Results" },
+    { src: "/result/JEE/jeeResult.jpeg", alt: "Result Both 2" },
+    // { src: "/result/JEE/2.png", alt: "Result Both 3" },
+    // { src: "/result/JEE/3.png", alt: "Result Both 4" },
+    // { src: "/result/JEE/4.png", alt: "Combined Results" },
   ];
 
   const containerVariants = {
@@ -33,6 +38,16 @@ const Page = () => {
 
   return (
     <main className="min-h-screen flex flex-col bg-slate-50 font-sans selection:bg-blue-200">
+       {
+        open && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-3">
+            {/* Background Blur */}
+            <div className="absolute inset-0 bg-black/40  backdrop-blur-sm" onClick={()=> setOpen(false)} />
+            {/* Modal */}
+               <ContactComing close={() => setOpen(false)} />
+          </div>
+        )
+      }
       <section className="w-full flex justify-center px-4 pt-16 md:pt-24 pb-20 relative overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none" />
 
@@ -96,7 +111,8 @@ const Page = () => {
                 </div>
               </div>
 
-              <button className="bg-slate-900 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl">
+          
+              <button onClick={()=> setOpen(!open)} className="cursor-pointer bg-slate-900 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl hover:shadow-blue-600/30 whitespace-nowrap w-full md:w-auto text-center">
                 Enroll Now →
               </button>
             </div>

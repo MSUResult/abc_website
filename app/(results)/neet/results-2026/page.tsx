@@ -1,10 +1,14 @@
 "use client"; // Required for Framer Motion animations
-import React from "react";
+import React, { useState } from "react";
 import results from "@/data/toppers.json";
 import Image from "next/image";
 import { motion } from "framer-motion"; // Lightweight animation library
+import ContactComing from "@/components/(Homepage)/ContactComing";
 
 const Page = () => {
+
+    const [open, setOpen] = useState(false);
+  
   const NeetResults = results.filter((res) => res.course === "NEET");
 
   const banners = [
@@ -33,9 +37,30 @@ const Page = () => {
     },
   };
 
+
   return (
     <main className="min-h-screen flex flex-col bg-slate-50 font-sans selection:bg-blue-200">
       {/* 1. HERO SECTION - UNTOUCHED AS REQUESTED */}
+      {
+        open && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-3">
+
+            {/* Background Blur */}
+            <div className="absolute inset-0 bg-black/40  backdrop-blur-sm" onClick={()=> setOpen(false)} />
+
+
+            {/* Modal */}
+
+
+               <ContactComing close={() => setOpen(false)} />
+
+
+            
+
+
+          </div>
+        )
+      }
       <section className="w-full flex justify-center px-4 pt-16 md:pt-24 pb-20 relative overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none" />
 
@@ -101,7 +126,7 @@ const Page = () => {
                 </div>
               </div>
 
-              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl hover:shadow-blue-600/30 whitespace-nowrap w-full md:w-auto text-center">
+              <button onClick={()=> setOpen(!open)} className="cursor-pointer bg-slate-900 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-xl hover:shadow-blue-600/30 whitespace-nowrap w-full md:w-auto text-center">
                 Enroll Now →
               </button>
             </div>
