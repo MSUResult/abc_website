@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Headphones, PenTool, Mic, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ContactComing from "@/components/(Homepage)/ContactComing";
 
 export default function IeltsLandingPage() {
   const courses = [
@@ -34,9 +35,27 @@ export default function IeltsLandingPage() {
   ];
 
   const router = useRouter();
+    const [open, setOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
+
+          {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-3 ">
+          {/* Background Blur */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
+
+          {/* Modal */}
+          <ContactComing close={() => setOpen(false)} />
+        </div>
+      )}
+
+
+
+
       {/* Navigation */}
       <nav className="border-b border-gray-100 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,12 +73,14 @@ export default function IeltsLandingPage() {
                 Courses
               </a>
               <a
-                href="#about"
+                href="/about-us"
                 className="text-gray-700 hover:text-red-600 font-medium transition-colors"
               >
                 About Us
               </a>
-              <button className="bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md">
+              <button 
+              onClick={()=> router.push('/contact')}
+               className="bg-red-600 cursor-pointer text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md">
                 Book Free Demo
               </button>
             </div>
@@ -92,7 +113,7 @@ export default function IeltsLandingPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group">
+            <button onClick={() => setOpen(!open)} className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group">
               Start Your Journey
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>

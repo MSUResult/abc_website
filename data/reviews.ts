@@ -13,7 +13,7 @@ export const REVIEWS_DATA = [
     course: "NEET UG",
     rating: 5,
     text: "The Biology notes and daily practice papers (DPPs) are very structured. The mock tests exactly match the NTA pattern, which gave me a lot of confidence.",
-    image: "/result/NEET/akshat.jpeg"
+    image: "/result/Neet/akshat.jpeg"
   },
   {
     name: "AB. AZEEM",
@@ -29,7 +29,7 @@ export const REVIEWS_DATA = [
     course: "NEET Repeater",
     rating: 5,
     text: "The best part is the personal mentorship. The teachers actually know your weak areas and help you work on them specifically. Best institute in the region.",
-    image: "/result/NEET/Divyansh.jpeg"
+    image: "/result/Neet/Divyansh.jpeg"
   },
   { 
     name: "AAKARSH",

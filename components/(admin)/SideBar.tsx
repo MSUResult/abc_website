@@ -10,6 +10,11 @@ const boxes = [
     text: "Add blogs",
     href: "/blogPage",
   },
+    {
+    icons: <Plus size={18} />,
+    text: "Add Test Series",
+    href: "/test-series",
+  },
   {
     icons: <PencilOff size={18} />,
     text: "Blog lists",

@@ -222,15 +222,11 @@ const ContactPage = () => {
               <div className="space-y-3 text-sm text-gray-600">
                 <p className="flex justify-between items-center border-b border-gray-50 pb-2">
                   <span className="font-medium text-gray-800">Mon - Fri:</span>
-                  <span>9:00 AM - 6:00 PM</span>
-                </p>
-                <p className="flex justify-between items-center border-b border-gray-50 pb-2">
-                  <span className="font-medium text-gray-800">Saturday:</span>
-                  <span>10:00 AM - 4:00 PM</span>
+                  <span>7:00 AM - 6:00 PM</span>
                 </p>
                 <p className="flex justify-between items-center">
                   <span className="font-medium text-gray-800">Sunday:</span>
-                  <span className="text-red-500 font-medium">Closed</span>
+                  <span className="text-red-500 font-medium">7:00 AM - 1 :00 PM</span>
                 </p>
               </div>
             </div>
