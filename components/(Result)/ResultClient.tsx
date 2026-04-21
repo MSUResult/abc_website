@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+// Added useRef and useMemo to the imports
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import {
   Trophy,
@@ -11,32 +12,48 @@ import {
   Home,
 } from "lucide-react";
 import { useQuiz } from "@/context/QuizContext";
+// Import your specific server action
+import { saveTestResultAction } from "@/lib/actions/saveResult"; 
 
-const ResultClient = ({ testId }) => {
+const ResultClient = ({ testId, isLoggedIn }) => {
   const router = useRouter();
   const [result, setResult] = useState(null);
   const { quizData } = useQuiz();
+  
+  // Use a ref to ensure we only save ONCE per page load
+  const hasSaved = useRef(false);
 
-  // 1. SAFE DATA EXTRACTION (Matches QuizEngine logic)
-  let questionsList = [];
-  if (Array.isArray(quizData?.questions)) {
-    if (Array.isArray(quizData.questions[0])) {
-      questionsList = quizData.questions[0];
-    } else {
-      questionsList = quizData.questions;
+  // 1. SAFE DATA EXTRACTION
+  const questionsList = useMemo(() => {
+    if (Array.isArray(quizData?.questions)) {
+      return Array.isArray(quizData.questions[0]) ? quizData.questions[0] : quizData.questions;
     }
-  }
+    return [];
+  }, [quizData]);
 
   const testTitle = quizData?.title || "Test Result";
 
   useEffect(() => {
-    const savedResult = sessionStorage.getItem(`testResult-${testId}`);
-    if (savedResult) {
-      setResult(JSON.parse(savedResult));
+    const savedResultString = sessionStorage.getItem(`testResult-${testId}`);
+    
+    if (savedResultString) {
+      const parsedResult = JSON.parse(savedResultString);
+      setResult(parsedResult);
+
+      // --- THE LOGIC ENGINE ---
+      // Only trigger if: 1. User is logged in AND 2. We haven't saved yet in this session
+      if (isLoggedIn && !hasSaved.current) {
+        hasSaved.current = true; // Mark as saved immediately to prevent race conditions
+        
+       // FIX: Add testTitle here as the 3rd argument!
+      saveTestResultAction(testId, parsedResult, testTitle) 
+        .then((res) => console.log("Database Sync:", res.message))
+        .catch((err) => console.error("Database Sync Failed:", err));
+    }
     } else {
       router.push(`/test-series/${testId}`);
     }
-  }, [testId, router]);
+  }, [testId, router, isLoggedIn, testTitle]);
 
   if (!result || questionsList.length === 0) {
     return (
@@ -58,7 +75,7 @@ const ResultClient = ({ testId }) => {
           Back to Test Series
         </button>
 
-        {/* SCORE BANNER (Dynamic calculation show) */}
+        {/* SCORE BANNER */}
         <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
           <div className="flex items-center gap-5">
             <div className="h-16 w-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center">
@@ -95,7 +112,6 @@ const ResultClient = ({ testId }) => {
 
           {questionsList.map((q, idx) => {
             const userPick = result.userAnswers[idx];
-            // Match QuizEngine's field names
             const correctAnswer = q.correct_answer; 
             const isCorrect = userPick === correctAnswer;
             const isSkipped = userPick === undefined || userPick === null;
@@ -170,7 +186,6 @@ const ResultClient = ({ testId }) => {
   );
 };
 
-// Helper component for Stat Cards
 const StatCard = ({ icon: Icon, color, label, val }) => (
   <div className="bg-white p-6 rounded-2xl border border-slate-200 flex items-center gap-4 shadow-sm">
     <div className={`h-12 w-12 rounded-xl bg-slate-50 flex items-center justify-center ${color}`}>

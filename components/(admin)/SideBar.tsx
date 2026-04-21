@@ -20,6 +20,11 @@ const boxes = [
     text: "All Students",
     href: "/students",
   },
+   {
+    icons: <PencilOff size={18} />,
+    text: "All Blogs",
+    href: "/allBlogs",
+  },
  
 ];
 

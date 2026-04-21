@@ -31,57 +31,7 @@ const TrendIcon = ({ trend }) => {
   return <Minus size={12} className="text-gray-300" />;
 };
 
-const rawData = [
-  {
-    id: 1,
-    name: "Ayush Singh",
-    score: 295,
-    trend: "up",
-    image:
-      "https://ui-avatars.com/api/?name=Ayush+Singh&background=6366f1&color=fff&bold=true",
-  },
-  {
-    id: 2,
-    name: "Riya Sharma",
-    score: 288,
-    trend: "down",
-    image:
-      "https://ui-avatars.com/api/?name=Riya+Sharma&background=8b5cf6&color=fff&bold=true",
-  },
-  {
-    id: 3,
-    name: "Karan Verma",
-    score: 275,
-    trend: "up",
-    image:
-      "https://ui-avatars.com/api/?name=Karan+Verma&background=a78bfa&color=fff&bold=true",
-  },
-  {
-    id: 4,
-    name: "Sneha Patel",
-    score: 271,
-    trend: "same",
-    isCurrentUser: true,
-    image:
-      "https://ui-avatars.com/api/?name=Sneha+Patel&background=f59e0b&color=fff&bold=true",
-  },
-  {
-    id: 5,
-    name: "Rahul Gupta",
-    score: 255,
-    trend: "up",
-    image:
-      "https://ui-avatars.com/api/?name=Rahul+Gupta&background=64748b&color=fff&bold=true",
-  },
-  {
-    id: 6,
-    name: "Amit Kumar",
-    score: 240,
-    trend: "down",
-    image:
-      "https://ui-avatars.com/api/?name=Amit+Kumar&background=64748b&color=fff&bold=true",
-  },
-];
+
 
 const getGapConfig = (points) => {
   if (points <= 5)

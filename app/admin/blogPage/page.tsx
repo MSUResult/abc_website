@@ -7,6 +7,7 @@ import { maxSize } from "zod";
 const AdminBlogUpload = () => {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [file, setFile] = useState(null);
   const [blogData, setBlogData] = useState({
     title: "",
     category: "board-exams",
@@ -17,42 +18,11 @@ const AdminBlogUpload = () => {
     content: []
   });
 
-const handleImageUpload = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+const handleImageSelect = (e) => {
+    setFile(e.target.files[0]);
+  };
 
-  setUploading(true);
-  try {
-    // 1. COMPRESSION SETTINGS
-    const options = {
-      maxSizeMB: 0.2, // Max 200KB (Super small!)
-      maxWidthOrHeight: 1280, // Resize large images
-      useWebWorker: true,
-    };
 
-    const compressedFile = await imageCompression(file, options);
-
-    // 2. PREPARE CLOUDINARY UPLOAD
-    const formData = new FormData();
-    formData.append("file", compressedFile);
-    formData.append("upload_preset", "your_preset_name"); // Set this in Cloudinary Settings
-
-    const res = await fetch(`https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    
-    // 3. STORE THE URL
-    setBlogData({ ...blogData, featuredImage: data.secure_url });
-    alert("Image optimized and uploaded!");
-  } catch (error) {
-    console.error("Compression/Upload Error:", error);
-  } finally {
-    setUploading(false);
-  }
-};
 
   const addBlock = (type) => {
     const newBlock = { type, id: Date.now() };
@@ -68,13 +38,26 @@ const handleImageUpload = async (e) => {
   };
 
   const handlePublish = async () => {
+    if (!file) return alert("Please select a featured image");
+    
     setLoading(true);
-    const result = await uploadBlog(blogData);
+    
+    // Create FormData to send file + text
+    const formData = new FormData();
+    formData.append("title", blogData.title);
+    formData.append("featuredImage", file); // The actual file
+    formData.append("content", JSON.stringify(blogData.content));
+    formData.append("category", blogData.category);
+    formData.append("tag", blogData.tag);
+    formData.append("excerpt", blogData.excerpt);
+    formData.append("seo", JSON.stringify(blogData.seo));
+
+    const result = await uploadBlog(formData);
+    
     setLoading(false);
-    if (result.success) alert("Blog Published Successfully!");
+    if (result.success) alert("Blog Published in ABC Folder!");
     else alert("Error: " + result.error);
   };
-
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 pb-20 font-sans transition-colors duration-200">
       {/* Sticky Top Bar */}
@@ -254,23 +237,21 @@ const handleImageUpload = async (e) => {
             </div>
           </div>
 
-          <div className="p-6 rounded-[2rem] border-2 border-dashed border-slate-200 ...">
-  <input 
-    type="file" 
-    accept="image/*" 
-    id="imageInput" 
-    hidden 
-    onChange={handleImageUpload} 
-  />
-  <label htmlFor="imageInput" className="flex flex-col items-center cursor-pointer">
-    <div className="w-12 h-12 ...">
-      {uploading ? "..." : <Upload size={20} />}
+       <div className="p-6 rounded-[2rem] border-2 border-dashed ...">
+      <input 
+        type="file" 
+        accept="image/*" 
+        id="imageInput" 
+        hidden 
+        onChange={handleImageSelect} 
+      />
+      <label htmlFor="imageInput" className="cursor-pointer flex flex-col items-center">
+        <Upload className={file ? "text-green-500" : ""} />
+        <p className="text-xs font-bold mt-2">
+          {file ? `Selected: ${file.name}` : "Featured Image"}
+        </p>
+      </label>
     </div>
-    <p className="text-xs font-bold text-slate-500">
-      {blogData.featuredImage ? "Image Uploaded ✅" : "Featured Image"}
-    </p>
-  </label>
-</div>
         </div>
       </div>
     </main>
