@@ -5,13 +5,21 @@ import React from "react";
 
 const layout = ({ children }) => {
   return (
-    <main className="flex h-screen">
+
+    <main className="flex h-screen w-full overflow-hidden bg-background">
+      
+      {/* Assuming your Sidebar has a fixed width, it will sit perfectly here */}
       <SideBar />
 
-      <div className="flex flex-1 flex-col ">
+      {/* Added overflow-y-auto so ONLY this side scrolls when content is long */}
+      <div className="flex flex-1 flex-col h-full overflow-y-auto relative">
         <Navbar />
-        {children}
+        {/* Added w-full to ensure it takes proper space */}
+        <div className="w-full">
+          {children}
+        </div>
       </div>
+      
     </main>
   );
 };

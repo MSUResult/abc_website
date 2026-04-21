@@ -1,85 +1,280 @@
 "use client";
-import { Upload } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { Upload, Trash2, FileText, Type, HelpCircle, FileDown, LayoutGrid, Save, PlusCircle } from "lucide-react";
+import { uploadBlog } from "@/lib/actions/(admin)/blogActions";
+import { maxSize } from "zod";
 
-const page = () => {
-  const handleSubmit = async () => {};
+const AdminBlogUpload = () => {
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [blogData, setBlogData] = useState({
+    title: "",
+    category: "board-exams",
+    tag: "",
+    excerpt: "",
+    featuredImage: "",
+    seo: { metaTitle: "", metaDescription: "" },
+    content: []
+  });
+
+const handleImageUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  setUploading(true);
+  try {
+    // 1. COMPRESSION SETTINGS
+    const options = {
+      maxSizeMB: 0.2, // Max 200KB (Super small!)
+      maxWidthOrHeight: 1280, // Resize large images
+      useWebWorker: true,
+    };
+
+    const compressedFile = await imageCompression(file, options);
+
+    // 2. PREPARE CLOUDINARY UPLOAD
+    const formData = new FormData();
+    formData.append("file", compressedFile);
+    formData.append("upload_preset", "your_preset_name"); // Set this in Cloudinary Settings
+
+    const res = await fetch(`https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    
+    // 3. STORE THE URL
+    setBlogData({ ...blogData, featuredImage: data.secure_url });
+    alert("Image optimized and uploaded!");
+  } catch (error) {
+    console.error("Compression/Upload Error:", error);
+  } finally {
+    setUploading(false);
+  }
+};
+
+  const addBlock = (type) => {
+    const newBlock = { type, id: Date.now() };
+    if (type === "heading" || type === "text") newBlock.text = "";
+    if (type === "pdf") { newBlock.title = ""; newBlock.url = ""; }
+    if (type === "qa") { newBlock.question = ""; newBlock.answer = ""; }
+    setBlogData({ ...blogData, content: [...blogData.content, newBlock] });
+  };
+
+  const updateBlock = (id, field, value) => {
+    const updatedContent = blogData.content.map(b => b.id === id ? { ...b, [field]: value } : b);
+    setBlogData({ ...blogData, content: updatedContent });
+  };
+
+  const handlePublish = async () => {
+    setLoading(true);
+    const result = await uploadBlog(blogData);
+    setLoading(false);
+    if (result.success) alert("Blog Published Successfully!");
+    else alert("Error: " + result.error);
+  };
 
   return (
-    <main className="min-h-screen px-4 md:px-12 mt-8">
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-2xl w-full flex flex-col space-y-7"
-      >
-        {/* Upload */}
-        <p className="md:text-2xl text-xl font-semibold text-gray-800">
-          Upload thumbnail
-        </p>
+    <main className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 pb-20 font-sans transition-colors duration-200">
+      {/* Sticky Top Bar */}
+      <nav className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-slate-200 dark:border-zinc-800 sticky top-0 z-50 px-6 py-3">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-red-500/20">
+              A
+            </div>
+            <div>
+              <h1 className="text-sm font-bold tracking-tight">Admin Console</h1>
+              <p className="text-[10px] text-slate-500 dark:text-zinc-400 uppercase tracking-widest font-bold">Editor v2.0</p>
+            </div>
+          </div>
+          <button 
+            disabled={loading}
+            onClick={handlePublish}
+            className="bg-red-600 hover:bg-red-700 disabled:bg-red-300 dark:disabled:bg-zinc-800 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-red-600/20 active:scale-95 text-sm"
+          >
+            {loading ? "Publishing..." : <><Save size={18}/> Publish Post</>}
+          </button>
+        </div>
+      </nav>
 
-        <label className="group cursor-pointer border border-gray-300 hover:border-blue-500 transition rounded-xl px-10 py-10 flex flex-col items-center justify-center gap-3 bg-gray-50 hover:bg-blue-50 w-fit shadow-sm">
-          <Upload
-            size={26}
-            className="text-gray-500 group-hover:text-blue-600 transition"
-          />
-          <p className="text-sm text-gray-500 group-hover:text-blue-600">
-            Click to upload thumbnail
-          </p>
-          <input type="file" hidden />
-        </label>
+      <div className="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        {/* Main Editor */}
+        <div className="lg:col-span-8 space-y-8">
+          {/* Header Section */}
+          <div className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 shadow-sm border border-slate-200 dark:border-zinc-800">
+            <input 
+              type="text" 
+              placeholder="Enter catchphrase title..." 
+              className="w-full text-4xl font-black bg-transparent border-none focus:ring-0 placeholder:text-slate-200 dark:placeholder:text-zinc-800 mb-4"
+              onChange={(e) => setBlogData({...blogData, title: e.target.value})}
+            />
+            <textarea 
+              placeholder="Write a compelling excerpt for the thumbnail..." 
+              className="w-full bg-transparent border-none focus:ring-0 text-slate-500 dark:text-zinc-400 text-lg resize-none"
+              rows={2}
+              onChange={(e) => setBlogData({...blogData, excerpt: e.target.value})}
+            />
+          </div>
 
-        {/* Blog Title */}
-        <label className="text-sm font-medium text-gray-700">Blog Title</label>
+          {/* Dynamic Content */}
+          <div className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 shadow-sm border border-slate-200 dark:border-zinc-800">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-zinc-500 mb-8 flex items-center gap-2">
+              <LayoutGrid size={14}/> Content Architecture
+            </h3>
+            
+            <div className="space-y-8">
+              {blogData.content.map((block) => (
+                <div key={block.id} className="group relative bg-slate-50 dark:bg-zinc-800/50 p-6 rounded-2xl border border-transparent hover:border-red-200 dark:hover:border-red-900/50 transition-all">
+                   <button 
+                    onClick={() => setBlogData({...blogData, content: blogData.content.filter(b => b.id !== block.id)})} 
+                    className="absolute -right-2 -top-2 bg-white dark:bg-zinc-800 shadow-xl text-red-500 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-50 dark:hover:bg-red-950 border border-slate-100 dark:border-zinc-700"
+                   >
+                    <Trash2 size={14} />
+                  </button>
 
-        <input
-          type="text"
-          placeholder="Enter blog title..."
-          className="px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-        />
+                  {block.type === "heading" && (
+                    <div className="flex gap-4">
+                        <Type className="text-red-500 shrink-0" size={20} />
+                        <input type="text" placeholder="Section Heading (H2)" className="w-full bg-transparent text-xl font-bold focus:outline-none placeholder:text-slate-300 dark:placeholder:text-zinc-600" onChange={(e) => updateBlock(block.id, "text", e.target.value)} />
+                    </div>
+                  )}
 
-        {/* Blog Description */}
-        <p className="md:text-2xl font-semibold text-gray-800">
-          Blog Description
-        </p>
+                  {block.type === "text" && (
+                    <div className="flex gap-4">
+                        <FileText className="text-slate-400 shrink-0" size={20} />
+                        <textarea placeholder="Write your paragraph content here..." className="w-full bg-transparent focus:outline-none resize-none leading-relaxed text-slate-600 dark:text-zinc-300" rows={4} onChange={(e) => updateBlock(block.id, "text", e.target.value)} />
+                    </div>
+                  )}
 
-        <textarea
-          rows={5}
-          placeholder="Write short description..."
-          className="px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
-        />
+                  {block.type === "qa" && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-red-600 dark:text-red-500 font-bold text-xs uppercase tracking-widest"><HelpCircle size={14}/> Frequently Asked Question</div>
+                      <input type="text" className="w-full p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 focus:ring-2 ring-red-500/20 transition-all outline-none" placeholder="Question Title" onChange={(e) => updateBlock(block.id, "question", e.target.value)} />
+                      <textarea className="w-full p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-sm focus:ring-2 ring-red-500/20 transition-all outline-none" placeholder="Provide a detailed answer..." rows={3} onChange={(e) => updateBlock(block.id, "answer", e.target.value)} />
+                    </div>
+                  )}
 
-        {/* Blog Content */}
-        <textarea
-          cols={80}
-          rows={10}
-          placeholder="Write Content Here"
-          className="px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
-        ></textarea>
+                  {block.type === "pdf" && (
+                    <div className="space-y-4">
+                       <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-widest"><FileDown size={14}/> Resource Attachment</div>
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Button Label (e.g. Download Syllabus)" className="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-sm outline-none" onChange={(e) => updateBlock(block.id, "title", e.target.value)} />
+                        <input type="text" placeholder="Google Drive / PDF URL" className="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-sm outline-none" onChange={(e) => updateBlock(block.id, "url", e.target.value)} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
 
-        {/* Category */}
-        <p className="font-medium text-gray-700">Blog Category</p>
-
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-600">
-            Select Category
-          </label>
-
-          <select className="px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition bg-white">
-            <option value="">Choose Category</option>
-            <option value="neet-exams">NEET Exam</option>
-            <option value="jee-exams">JEE Exam</option>
-          </select>
+            {/* Block Selectors */}
+            <div className="mt-12 pt-8 border-t border-slate-100 dark:border-zinc-800">
+                <p className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest mb-4 text-center">Add Content Section</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                    { label: "Heading", icon: Type, type: "heading" },
+                    { label: "Paragraph", icon: FileText, type: "text" },
+                    { label: "Q&A", icon: HelpCircle, type: "qa" },
+                    { label: "PDF Link", icon: FileDown, type: "pdf" }
+                ].map((item) => (
+                    <button 
+                        key={item.type} 
+                        onClick={() => addBlock(item.type)} 
+                        className="flex flex-col items-center gap-3 p-5 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-red-500 dark:hover:border-red-500 hover:text-red-600 dark:hover:text-red-500 transition-all group"
+                    >
+                    <div className="w-10 h-10 rounded-full bg-slate-50 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-red-50 dark:group-hover:bg-red-950/30 transition-colors">
+                        <item.icon size={18} />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
+                    </button>
+                ))}
+                </div>
+            </div>
+          </div>
         </div>
 
-        {/* Button */}
-        <button
-          type="submit"
-          className="w-fit mt-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg shadow-sm transition"
-        >
-          Publish Blog
-        </button>
-      </form>
+        {/* Sidebar Settings */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 shadow-sm border border-slate-200 dark:border-zinc-800">
+            <h3 className="font-bold text-sm mb-6 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                Metadata & Taxonomy
+            </h3>
+            <div className="space-y-6">
+              <div>
+                <label className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.15em]">Category</label>
+                <select 
+                    className="w-full mt-2 p-3.5 rounded-xl border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/50 text-sm font-medium focus:ring-2 ring-red-500/20 outline-none" 
+                    onChange={(e) => setBlogData({...blogData, category: e.target.value})}
+                >
+                  <option value="board-exams">Board Exams</option>
+                  <option value="neet-exams">NEET Exams</option>
+                  <option value="jee-exams">JEE Exams</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.15em]">Primary Tag</label>
+                <input 
+                    type="text" 
+                    placeholder="e.g. Accountancy" 
+                    className="w-full mt-2 p-3.5 rounded-xl border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/50 text-sm outline-none focus:ring-2 ring-red-500/20" 
+                    onChange={(e) => setBlogData({...blogData, tag: e.target.value})} 
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-zinc-900 dark:bg-red-600 rounded-[2rem] p-6 shadow-xl text-white">
+            <h3 className="font-bold text-sm mb-6 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-white"></div>
+                SEO Optimizer
+            </h3>
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-zinc-500 dark:text-red-200 uppercase tracking-widest px-1">Meta Title</p>
+                <input 
+                    type="text" 
+                    placeholder="Search engine title..." 
+                    className="w-full bg-zinc-800 dark:bg-red-700/50 border-none rounded-xl text-sm placeholder:text-zinc-600 dark:placeholder:text-red-200 focus:ring-2 ring-white/20 transition-all"
+                    onChange={(e) => setBlogData({...blogData, seo: {...blogData.seo, metaTitle: e.target.value}})}
+                />
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-zinc-500 dark:text-red-200 uppercase tracking-widest px-1">Meta Description</p>
+                <textarea 
+                    placeholder="Brief description for Google search results..." 
+                    className="w-full bg-zinc-800 dark:bg-red-700/50 border-none rounded-xl text-sm placeholder:text-zinc-600 dark:placeholder:text-red-200 focus:ring-2 ring-white/20 transition-all resize-none"
+                    rows={4}
+                    onChange={(e) => setBlogData({...blogData, seo: {...blogData.seo, metaDescription: e.target.value}})}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 rounded-[2rem] border-2 border-dashed border-slate-200 ...">
+  <input 
+    type="file" 
+    accept="image/*" 
+    id="imageInput" 
+    hidden 
+    onChange={handleImageUpload} 
+  />
+  <label htmlFor="imageInput" className="flex flex-col items-center cursor-pointer">
+    <div className="w-12 h-12 ...">
+      {uploading ? "..." : <Upload size={20} />}
+    </div>
+    <p className="text-xs font-bold text-slate-500">
+      {blogData.featuredImage ? "Image Uploaded ✅" : "Featured Image"}
+    </p>
+  </label>
+</div>
+        </div>
+      </div>
     </main>
   );
 };
 
-export default page;
+export default AdminBlogUpload;

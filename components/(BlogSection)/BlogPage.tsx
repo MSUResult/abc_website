@@ -10,6 +10,15 @@ const BlogPage = ({ data }) => {
 
   const displayImage = data.featuredImage || "/placeholder.jpg";
 
+
+const dateString = data.publishedAt ? new Date(data.publishedAt).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric'
+  }) : "March 2026";
+
+
+
+
   return (
     <main className="min-h-screen bg-white antialiased font-sans mt-22">
       
@@ -42,7 +51,7 @@ const BlogPage = ({ data }) => {
           </span>
           <div className="flex items-center gap-2">
             <FaRegCalendarAlt className="text-red-500" />
-            <span>March 2026</span>
+            <span>{dateString}</span>
           </div>
         </div>
       </header>

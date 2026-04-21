@@ -17,14 +17,10 @@ const boxes = [
   },
   {
     icons: <PencilOff size={18} />,
-    text: "Blog lists",
-    href: "/addBlog",
+    text: "All Students",
+    href: "/students",
   },
-  {
-    icons: <Mails size={18} />,
-    text: "Subscriptions",
-    href: "/addBlog",
-  },
+ 
 ];
 
 const SideBar = () => {

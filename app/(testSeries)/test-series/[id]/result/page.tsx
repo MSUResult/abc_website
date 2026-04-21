@@ -1,31 +1,31 @@
-// app/test-series/[id]/result/page.js
 import ResultClient from "@/components/(Result)/ResultClient";
 import { connectDB } from "@/lib/db/db";
-import { QuizResult } from "@/lib/models/quiz";
+import { QuizResult } from "@/lib/models/QuizResult";
 import { auth } from "@clerk/nextjs/server";
 
-export default async function ResultPage({ params }) {
-  const { userId } = await auth();
-  const { id } = await params;
 
-  let isAlreadySaved = false;
+export default async function ResultPage({ params }: { params: { id: string } }) {
+  // const { userId } = await auth();
+const { id } = await params;
 
-  // 🔥 Check DB ONLY if the user is logged in
-  if (userId) {
-    await connectDB();
-    const existingAttempt = await QuizResult.findOne({
-      userId: userId,
-      testId: Number(id),
-    }).lean();
+  // let isAlreadySaved = false;
 
-    isAlreadySaved = Boolean(existingAttempt);
-  }
+  // if (userId) {
+  //   await connectDB();
+  //   // Use the string ID from params directly
+  //   const existingAttempt = await QuizResult.findOne({
+  //     userId: userId,
+  //     testId: id,
+  //   }).lean();
+
+  //   isAlreadySaved = Boolean(existingAttempt);
+  // }
 
   return (
     <ResultClient
       testId={id}
-      isAlreadySaved={isAlreadySaved}
-      isLoggedIn={Boolean(userId)} // Pass auth state to the client
+      // isAlreadySaved={isAlreadySaved}
+      // isLoggedIn={Boolean(userId)}
     />
   );
 }

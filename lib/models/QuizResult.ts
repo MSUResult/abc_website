@@ -1,6 +1,4 @@
-import mongoose, { Schema } from "mongoose";
-import { string } from "zod";
-import { required } from "zod/mini";
+import mongoose from "mongoose";
 
 const quizResultSchema = new mongoose.Schema(
   {
@@ -10,7 +8,7 @@ const quizResultSchema = new mongoose.Schema(
       index: true,
     },
     testId: {
-      type: Number,
+      type: String, // Changed from Number to String for MongoDB compatibility
       required: true,
       index: true,
     },
@@ -39,7 +37,8 @@ const quizResultSchema = new mongoose.Schema(
       required: true,
     },
     userAnswers: {
-      type: [Number],
+      type: Map, // Using Map to handle { "0": 1, "1": 3 } format from state
+      of: Number,
       required: true,
     },
     submittedAt: {
@@ -50,6 +49,7 @@ const quizResultSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-quizResultSchema.index({userId:1 , testId:1}, {unique:true})
+// Ensure a user can only have ONE saved result per test
+quizResultSchema.index({ userId: 1, testId: 1 }, { unique: true });
 
-export  const QuizResult =  mongoose.models.QuizResult || mongoose.model("QuizResult", quizResultSchema );
+export const QuizResult = mongoose.models.QuizResult || mongoose.model("QuizResult", quizResultSchema);

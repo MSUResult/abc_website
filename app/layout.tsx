@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/(Homepage)/Navbar";
 import WhatsappFloat from "@/components/Whatsapp";
 import NavbarProvider from "@/components/Provider/NavbarProvider";
 import Footer from "@/components/(Homepage)/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import FooterProvider from "@/components/Provider/FooterProvider";
+import { cn } from "@/lib/utils";
+import { QuizProvider } from "@/context/QuizContext";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -68,14 +73,19 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
+     
+    <html lang="en" className={cn("font-sans", geist.variable)}>
+     
       <body className={`${inter.variable} antialiased`}>
+          <QuizProvider>
         {/* <Navbar /> */}
         <NavbarProvider />
         {children}
         <WhatsappFloat />
-        <Footer />
+        <FooterProvider />
+         </QuizProvider>
       </body>
+     
     </html>
     </ClerkProvider>
   );

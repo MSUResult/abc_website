@@ -41,7 +41,7 @@ const Footer = () => {
                   About Us
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="https://port.saharanpurprice.in"
                   target="_blank"
@@ -49,7 +49,7 @@ const Footer = () => {
                 >
                   Portfolio
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="/about-us"

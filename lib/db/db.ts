@@ -32,7 +32,7 @@ export async function connectDB() {
           bufferCommands: false,
         });
 
-        console.log("✅ MongoDB Connected");
+        console.log("MongoDB Connected");
         return conn;
       } catch (error) {
         console.error("❌ MongoDB Connection Error:", error);
