@@ -15,6 +15,12 @@ import { useQuiz } from "@/context/QuizContext";
 // Import your specific server action
 import { saveTestResultAction } from "@/lib/actions/saveResult"; 
 
+
+
+
+
+
+
 const ResultClient = ({ testId, isLoggedIn }) => {
   const router = useRouter();
   const [result, setResult] = useState(null);
@@ -54,6 +60,33 @@ const ResultClient = ({ testId, isLoggedIn }) => {
       router.push(`/test-series/${testId}`);
     }
   }, [testId, router, isLoggedIn, testTitle]);
+
+
+
+
+  
+useEffect(()=> {
+
+// 1. Push a dummy state into the history stack when the result page loads
+    window.history.pushState(null, "", window.location.href);
+
+
+    // 2. Create a function to handle the back button press
+    const handleBackButton = () => {
+      // 3. Send them to the homepage (or wherever you want)
+      router.push("/test-series"); // Change "/" to your actual homepage route if different
+    };
+
+
+    window.addEventListener("popstate", handleBackButton);
+
+
+    // 5. Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+
+},[router])
 
   if (!result || questionsList.length === 0) {
     return (
