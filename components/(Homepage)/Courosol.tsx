@@ -5,18 +5,18 @@ import { ChevronRight, X } from "lucide-react";
 import ContactComing from "./ContactComing";
 
 const slides = [
-  {
-    id: 1,
-    title: "NEET Crash Course",
-    highlight: "Complete Preparation",
-    subtitle: "The most result-driven NEET crash course in Saharanpur.",
-    description: "Join the most trusted batch with India's top educators.",
-    cta: "Join Now",
-    src: "/courosol/abcinst.jpeg",
-    bgColor: "bg-gradient-to-r from-red-600 to-red-800", // Standardized to Tailwind colors
-    accentColor: "text-white",
-    price: "8000",
-  },
+ {
+  id: 1,
+  title: "JEE / NEET Dummy Batch Started",
+  highlight: "Complete Exam Preparation",
+  subtitle: "Join Saharanpur’s most result-oriented JEE / NEET Dummy Batch for focused preparation.",
+  description: "Learn with experienced educators, structured study plans, regular tests, and complete guidance to achieve top ranks.",
+  cta: "Join Now",
+  src: "/courosol/DummyBatch.jpeg",
+  bgColor: "bg-gradient-to-r from-red-600 to-red-800",
+  accentColor: "text-white",
+  price: "8000",
+},
   {
     id: 2,
     title: "Test Series Launching",
