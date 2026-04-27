@@ -15,7 +15,7 @@ const slides = [
   src: "/courosol/DummyBatch.jpeg",
   bgColor: "bg-gradient-to-r from-red-600 to-red-800",
   accentColor: "text-white",
-  price: "8000",
+
 },
   {
     id: 2,
