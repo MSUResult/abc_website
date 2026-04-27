@@ -75,7 +75,7 @@ const MainCourse = () => {
 
             <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-[400px] overflow-hidden">
               <Image
-                src="/courosol/abcinst.jpeg"
+                src="/courosol/fdg.jpeg"
                 alt="NEET Crash Course"
                 fill
                 className="object-contain object-center drop-shadow-2xl"
