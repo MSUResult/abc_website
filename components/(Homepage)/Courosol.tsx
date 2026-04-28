@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronRight, X } from "lucide-react";
 import ContactComing from "./ContactComing";
+import { useRouter } from "next/navigation";
 
 const slides = [
  {
@@ -47,6 +48,8 @@ const Carousel = () => {
   const [current, setCurrent] = useState(0);
 
   const [open, setOpen] = useState(false);
+
+  const router = useRouter()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -111,7 +114,7 @@ const Carousel = () => {
 
                 <button
                   className="mt-4 bg-white text-red-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 hover:scale-105 transition-all flex items-center gap-2 shadow-lg"
-                  onClick={() => setOpen(!open)}
+                  onClick={() => router.push('/contact')}
                 >
                   {slide.cta}
                   <ChevronRight size={20} />

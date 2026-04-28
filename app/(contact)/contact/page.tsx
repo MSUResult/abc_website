@@ -105,7 +105,7 @@ const ContactPage = () => {
                     name="name"
                     type="text"
                     placeholder="John Doe"
-                    className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    className="w-full py-3 px-4 text-black font-bold bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                   />
                 </div>
 
@@ -121,7 +121,7 @@ const ContactPage = () => {
                     name="phone"
                     type="tel"
                     placeholder="+91 00000 00000"
-                    className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    className="w-full text-black font-bold py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ const ContactPage = () => {
                   name="email"
                   type="email"
                   placeholder="john@example.com"
-                  className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                  className="w-full py-3 px-4 bg-gray-50 border text-black font-bold border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                 />
               </div>
 
@@ -154,7 +154,7 @@ const ContactPage = () => {
                   name="message"
                   rows={5}
                   placeholder="How can we help you?"
-                  className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all resize-none"
+                  className="w-full py-3 px-4 text-black font-bold bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all resize-none"
                 ></textarea>
               </div>
 
