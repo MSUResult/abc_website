@@ -25,7 +25,7 @@ const slides = [
       "Smart practice designed to maximize your NEET and JEE performance.",
     description: "Unlock your potential with affordable learning solutions.",
     cta: "Explore Batches",
-    src: "/courosol/test.png",
+    src: "/courosol/test.jpeg",
     bgColor: "bg-red-600",
     accentColor: "text-red-100",
     price: "3000",
