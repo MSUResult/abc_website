@@ -197,7 +197,7 @@ const ContactPage = () => {
                 <h4 className="font-semibold text-gray-900 text-sm mb-1">
                   Email
                 </h4>
-                <p className="text-gray-600">abcinstitutesre2003@gmail.com</p>
+                <p className="text-gray-600">shahidanswaribiology@gmail.com</p>
               </div>
             </div>
 
@@ -257,3 +257,20 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+
+
+
+
+
+
+
+
+// shahidanswaribiology@gmail.com  :- Gmail Update in the contact page 
+
+
+// keyword  Admit Card  , 
+
+// 2. Dress code  for neet  2026 
+
+// 3. 
