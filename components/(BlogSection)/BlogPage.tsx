@@ -31,7 +31,7 @@ const dateString = data.publishedAt ? new Date(data.publishedAt).toLocaleDateStr
             src={displayImage} 
             alt={data.title} 
             fill 
-            className="object-cover object-top"
+            className="object-cover "
             priority
           />
         </div>
