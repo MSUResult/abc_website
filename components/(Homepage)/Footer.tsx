@@ -133,7 +133,7 @@ const Footer = () => {
           <p className="text-sm text-slate-500">
             &copy; {new Date().getFullYear()} Designed & Developed by Shivansh |{" "}
             <a
-              href="https://port.saharanpurprice.in"
+              href="https://webcontractor.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-red-600 hover:underline hover:text-red-700 transition"
