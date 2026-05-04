@@ -21,7 +21,7 @@ const BlogSchema = new mongoose.Schema({
     keywords: [String]
   },
   content: [{
-    type: { type: String, enum: ['heading', 'text', 'pdf', 'qa', 'ad'] },
+    type: { type: String, enum: ['heading', 'text', 'pdf', 'qa', 'ad', 'image'] },
     text: String,
     url: String,
     title: String,

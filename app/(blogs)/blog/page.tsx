@@ -16,7 +16,7 @@ async function getBlogs() {
     // Convert MongoDB _id to string so Next.js doesn't complain
     return JSON.parse(JSON.stringify(blogs));
   } catch (err) {
-    console.error("❌ DATABASE ERROR:", err.message);
+    // console.error("❌ DATABASE ERROR:", err.message);
     return [];
   }
 }
@@ -28,7 +28,7 @@ const Page = async ({ searchParams }) => {
 
   // This is now a direct DB call! No 404 possible.
   const blogs = await getBlogs();
-  console.log("💎 MONGODB DATA LOADED:", blogs.length);
+  // console.log("💎 MONGODB DATA LOADED:", blogs.length);
 
   const uniqueTags = Array.from(new Set(blogs.map((blog) => blog.tag))).filter(Boolean);
 

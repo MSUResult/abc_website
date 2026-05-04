@@ -4,11 +4,14 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegClock, FaRegCalendarAlt, FaChevronRight, FaDownload, FaGraduationCap } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const BlogPage = ({ data }) => {
   if (!data) return <div className="p-20 text-center">Loading...</div>;
 
   const displayImage = data.featuredImage || "/placeholder.jpg";
+
+  const router = useRouter()
 
 
 const dateString = data.publishedAt ? new Date(data.publishedAt).toLocaleDateString('en-US', {
@@ -76,7 +79,7 @@ const dateString = data.publishedAt ? new Date(data.publishedAt).toLocaleDateStr
                     <div className="bg-white p-6 rounded-xl text-center">
                       <p className="text-xs font-bold text-slate-400 uppercase mb-2">Sponsored Content</p>
                       <h4 className="text-xl font-bold text-slate-800">New JEE/NEET Batch Starts Monday!</h4>
-                      <button className="mt-4 bg-orange-500 text-white px-6 py-2 rounded-lg font-bold">Enroll Now</button>
+                      <button className="mt-4 bg-orange-500 text-white px-6 py-2 rounded-lg font-bold" onClick={()=> router.push('/contact')}>Enroll Now</button>
                     </div>
                   </div>
                 );
