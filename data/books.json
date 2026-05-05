@@ -1,6 +1,20 @@
 [
-    {
-        "Title":"NCERT Revision Book",
-}
-
+  {
+    "title": "NCERT Revision Workbook",
+    "subject": "Chemistry",
+    "class": "Class 12",
+    "image": "/books/RevChemisClass12.jpeg"
+  },
+  {
+    "title": "NCERT Revision Workbook",
+    "subject": "Physics",
+    "class": "Class 12",
+    "image": "/books/RevPhysicsClass12.jpeg"
+  },
+  {
+    "title": "NCERT Revision Workbook",
+    "subject": "Biology",
+    "class": "Class 12",
+    "image": "/books/RevBioClass12.jpeg"
+  }
 ]

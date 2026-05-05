@@ -40,7 +40,7 @@ const Navbar = () => {
     { name: "About Us", href: "/about-us", icon: <Info size={20} /> },
     { name: "Blog", href: "/blog", icon: <MoreHorizontal size={20} /> },
     { name: "Contact", href: "/contact", icon: <MoreHorizontal size={20} /> },
-    { name: "ABC E-Store", href: "/Store", icon: <MoreHorizontal size={20} /> },
+    { name: "ABC E-Store", href: "/store", icon: <MoreHorizontal size={20} /> },
   ];
 
   const RenderBadge = ({ status }) => {
@@ -157,8 +157,6 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center gap-4">
-              {/* Quick access UserButton on mobile if logged in */}
-
               <button
                 onClick={() => setOpen(true)}
                 className="p-2 text-gray-800 bg-gray-100 rounded-lg"
@@ -234,10 +232,17 @@ const Navbar = () => {
                             className="ml-14 mt-1 space-y-1 border-l-2 border-blue-100"
                           >
                             {[
-                              { label: "NEET Results", path: "/results/neet" },
+                              {
+                                label: "NEET Results",
+                                path: "/neet/results-2026",
+                              },
                               {
                                 label: "JEE Results",
                                 path: "/jee/results-2026",
+                              },
+                              {
+                                label: "Academic",
+                                path: "/academic/results-2026",
                               },
                             ].map((sub) => (
                               <button
