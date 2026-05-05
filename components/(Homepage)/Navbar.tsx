@@ -40,6 +40,7 @@ const Navbar = () => {
     { name: "About Us", href: "/about-us", icon: <Info size={20} /> },
     { name: "Blog", href: "/blog", icon: <MoreHorizontal size={20} /> },
     { name: "Contact", href: "/contact", icon: <MoreHorizontal size={20} /> },
+    { name: "ABC E-Store", href: "/Store", icon: <MoreHorizontal size={20} /> },
   ];
 
   const RenderBadge = ({ status }) => {

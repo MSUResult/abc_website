@@ -37,9 +37,9 @@ const Page = async ({ searchParams }) => {
       {/* ... Your UI remains exactly the same ... */}
       <div className="max-w-4xl mx-auto text-center mt-10">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">ABC Blog</h1>
-        <p className="text-lg md:text-2xl font-medium mt-6 leading-relaxed">
-          How we Transform <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-white font-bold">Saharanpur</span> Education Industry
-        </p>
+        <p className="text-lg md:text-2xl font-light mt-6 leading-relaxed text-white/90">
+  How we Transform <span className="bg-white text-red-600 px-3 py-1 rounded-lg font-bold shadow-lg mx-1 inline-block -rotate-1">Saharanpur</span> Education Industry
+</p>
       </div>
 
       <section className="flex flex-wrap justify-center items-center gap-4 py-12 max-w-5xl mx-auto">
