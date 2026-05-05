@@ -29,12 +29,12 @@ const dateString = data.publishedAt ? new Date(data.publishedAt).toLocaleDateStr
 
       {/* 1. IMAGE FIRST */}
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="relative w-full h-[300px] md:h-[550px] rounded-[2rem] overflow-hidden shadow-xl">
-          <Image 
+        <div className="relative w-full aspect-video md:aspect-auto md:h-[550px] rounded-[2rem] overflow-hidden shadow-xl  bg-slate-100">
+          <Image  
             src={displayImage} 
             alt={data.title} 
             fill 
-            className="object-cover "
+            className=" object-cover "
             priority
           />
         </div>
