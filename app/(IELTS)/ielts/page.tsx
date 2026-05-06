@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import ContactComing from "@/components/(Homepage)/ContactComing";
 
 export default function IeltsLandingPage() {
+ 
   const courses = [
     {
       title: "Speaking Mastery",
@@ -113,7 +114,7 @@ export default function IeltsLandingPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <button onClick={() => setOpen(!open)} className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group">
+            <button onClick={() => router.push('/contact')} className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group">
               Start Your Journey
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
