@@ -42,8 +42,8 @@ export default function IeltsLandingPage() {
 
   // Array of 5 placeholders for your images
   const resultImages = [
-    "", // url 1
-    "", // url 2
+    "/result/Iilets/results.jpg", // url 1
+    "/result/Iilets/results123.jpg", // url 2
     "", // url 3
     "", // url 4
     "", // url 5
@@ -245,7 +245,7 @@ export default function IeltsLandingPage() {
                   <img
                     src={url}
                     alt={`Student Result ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
                   />
                 ) : (
                   /* Placeholder UI */
