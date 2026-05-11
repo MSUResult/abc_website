@@ -2,12 +2,11 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Headphones, PenTool, Mic, ArrowRight } from "lucide-react";
+import { BookOpen, Headphones, PenTool, Mic, ArrowRight, Clock, Award } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ContactComing from "@/components/(Homepage)/ContactComing";
 
 export default function IeltsLandingPage() {
- 
   const courses = [
     {
       title: "Speaking Mastery",
@@ -35,13 +34,27 @@ export default function IeltsLandingPage() {
     },
   ];
 
+  const timings = [
+    { course: "Spoken English", time: "12:30 PM - 1:30 PM" },
+    { course: "IELTS Preparation", time: "12:00 PM - 3:00 PM" },
+    { course: "PTE Academic", time: "12:00 PM - 3:00 PM" },
+  ];
+
+  // Array of 5 placeholders for your images
+  const resultImages = [
+    "", // url 1
+    "", // url 2
+    "", // url 3
+    "", // url 4
+    "", // url 5
+  ];
+
   const router = useRouter();
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
-
-          {open && (
+      {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-3 ">
           {/* Background Blur */}
           <div
@@ -53,9 +66,6 @@ export default function IeltsLandingPage() {
           <ContactComing close={() => setOpen(false)} />
         </div>
       )}
-
-
-
 
       {/* Navigation */}
       <nav className="border-b border-gray-100 bg-white sticky top-0 z-50">
@@ -79,9 +89,10 @@ export default function IeltsLandingPage() {
               >
                 About Us
               </a>
-              <button 
-              onClick={()=> router.push('/contact')}
-               className="bg-red-600 cursor-pointer text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md">
+              <button
+                onClick={() => router.push("/contact")}
+                className="bg-red-600 cursor-pointer text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md"
+              >
                 Book Free Demo
               </button>
             </div>
@@ -114,7 +125,10 @@ export default function IeltsLandingPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <button onClick={() => router.push('/contact')} className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group">
+            <button
+              onClick={() => router.push("/contact")}
+              className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 flex items-center mx-auto group"
+            >
               Start Your Journey
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -162,6 +176,86 @@ export default function IeltsLandingPage() {
                 >
                   Learn more <ArrowRight className="ml-1 w-4 h-4" />
                 </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Class Timings Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Batch Timings
+            </h2>
+            <div className="w-24 h-1 bg-red-600 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {timings.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow"
+              >
+                <div className="bg-red-50 p-4 rounded-full mb-4">
+                  <Clock className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {item.course}
+                </h3>
+                <div className="mt-2 bg-red-600 text-white px-5 py-2 rounded-full font-medium shadow-sm">
+                  {item.time}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results / Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Success Stories
+            </h2>
+            <div className="w-24 h-1 bg-red-600 mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+              Join the hundreds of students who have successfully achieved their target scores and are now studying or working abroad.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {resultImages.map((url, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="aspect-[3/4] bg-gray-50 rounded-xl overflow-hidden relative shadow-sm border border-gray-200 group flex flex-col items-center justify-center text-gray-400 hover:border-red-200 transition-colors"
+              >
+                {url ? (
+                  /* Once you have URLs, this image will display */
+                  <img
+                    src={url}
+                    alt={`Student Result ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  /* Placeholder UI */
+                  <>
+                    <Award className="w-10 h-10 mb-2 opacity-50 group-hover:text-red-500 transition-colors" />
+                    <span className="text-sm font-medium group-hover:text-red-500 transition-colors">
+                      Result {index + 1}
+                    </span>
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
